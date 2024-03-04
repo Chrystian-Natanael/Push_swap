@@ -2,7 +2,7 @@
 #                                   NAME                                         #
 #! ******************************************************************************#
 
-NAME = 
+NAME = push_swap
 .DEFAULT_GOAL := all
 .PHONY: all clean fclean re
 .SILENT:
@@ -22,19 +22,17 @@ RESET = \033[0m
 #                                   PATH                                         #
 #! ******************************************************************************#
 
-SRCS_PATH = 
-INCS_PATH = 
-BUILD_DIR := 
-LIBFT_DIR := 
+SRCS_PATH = src/
+INCS_PATH = includes/
+BUILD_DIR := build/
+LIBFT_DIR := lib/libft/
 
 #! ******************************************************************************#
 #                                   FILES                                        #
 #! ******************************************************************************#
 
 SRCS =	$(addprefix $(SRCS_PATH),\
-		file01 \
-		file02 \
-		file03
+		main.c)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)
@@ -73,7 +71,7 @@ define comp_objs
 	$(eval COUNT=$(shell expr $(COUNT) + 1))
 	$(COMP_OBJ)
 	$(SLEEP)
-	printf "GENERIC MESSAGE$(YELLOW) %d%%\r$(FCOLOR)" $$(echo $$(($(COUNT) * 100 / $(words $(SRCS)))))
+	printf "💤 Compiling -> $(YELLOW)PUSH_SWAP: %d%%\r$(FCOLOR)" $$(echo $$(($(COUNT) * 100 / $(words $(SRCS)))))
 endef
 
 define comp_libft
@@ -84,7 +82,7 @@ endef
 define comp_exe
 	$(COMP_EXE)
 	printf "\n"
-	printf "$(GREEN)PROGRAM ->$(RESET)$(PURPLE) READY\n$(RESET)"
+	printf "$(GREEN)Push_swap ->$(RESET)$(PURPLE) READY$(RESET) 😎🙏\n"
 endef
 
 #! ******************************************************************************#
