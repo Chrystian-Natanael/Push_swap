@@ -52,7 +52,7 @@ FCOLOR = \033[0m
 #! ******************************************************************************#
 
 SRCS_PATH = src/
-INCS_PATH = includes/
+INCS_PATH = includes/ lib/libft/include/
 BUILD_DIR := build/
 LIBFT_DIR := lib/libft/
 
@@ -61,7 +61,9 @@ LIBFT_DIR := lib/libft/
 #! ******************************************************************************#
 
 SRCS =	$(addprefix $(SRCS_PATH),\
-		main.c)
+		main.c \
+		validade_args.c \
+		errors.c)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)
