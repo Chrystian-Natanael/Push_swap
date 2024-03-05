@@ -6,14 +6,14 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:00:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/04 15:01:10 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/05 13:33:16 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-int	main(void)
-{
-	printf("Hello World\n");
-	return (0);
+int main() {
+	printf("Hello, World!\n");
+	return 0;
 }
+
