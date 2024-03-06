@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 15:01:17 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/05 17:36:53 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/06 09:05:25 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,11 @@ typedef struct s_push
 void	error(char *str1, char *str2, unsigned int retrn);
 int		ft_isspace(int c);
 void	validade_args(int argc, char **argv, t_push *push);
-void	add_nodes_value(t_push *push, char *value);
-t_stack	*create_node(int type, char *value);
+void	add_nodes_str(t_push *push, char *value);
+t_stack	*create_node_str(int type, char *value);
 void	validade_arg_str(char *numbers, t_push *push);
+void	free_split(char **split);
+void	free_stack(t_stack *stack);
+void	validade_errors_init(int argc, char **argv, t_push *push, int *idx);
 
 #endif

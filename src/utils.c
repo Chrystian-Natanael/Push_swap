@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 15:00:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/06 09:22:45 by cnatanae         ###   ########.fr       */
+/*   Created: 2024/03/06 08:54:54 by cnatanae          #+#    #+#             */
+/*   Updated: 2024/03/06 09:22:59 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	free_split(char **split)
 {
-	t_push	push;
-	int		idx;
+	int	idx;
 
 	idx = 0;
-	validade_args(argc, argv, &push);
-	if (push.a)
-		ft_printf("Node %d: %d and your type is %d\n", idx, \
-			push.a->value, push.a->type);
-	if (push.a && push.a->next)
-		push.a = push.a->next;
-	idx++;
-	while (push.a && push.a->type != TOP)
+	while (split[idx])
 	{
-		ft_printf("Node %d: %d and your type is %d\n", idx, \
-			push.a->value, push.a->type);
-		push.a = push.a->next;
+		free(split[idx]);
 		idx++;
 	}
-	if (push.a)
-		free_stack(push.a);
-	return (0);
+	free(split);
+}
+
+int	ft_isspace(int c)
+{
+	return ((c >= 9 && c <= 13) || c == 32);
+}
+
+void	free_stack(t_stack *stack)
+{
+	while (stack->next && stack->next->type != LAST)
+	{
+		stack = stack->next;
+		free(stack->prev);
+	}
+	free(stack->next);
+	free(stack);
 }

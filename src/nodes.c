@@ -1,48 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validade_args.c                                    :+:      :+:    :+:   */
+/*   nodes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 16:02:35 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/05 17:55:01 by cnatanae         ###   ########.fr       */
+/*   Created: 2024/03/06 08:59:28 by cnatanae          #+#    #+#             */
+/*   Updated: 2024/03/06 09:23:19 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-int	ft_isspace(int c)
+void	add_nodes_str(t_push *push, char *value)
 {
-	return ((c >= 9 && c <= 13) || c == 32);
-}
+	t_stack	*new_node;
 
-void	validade_args(int argc, char **argv, t_push *push)
-{
-	char	**nbrs;
-	int		idx;
-
-	idx = 0;
-	if (argc < 2)
-		error("format invalid", "", ERROR);
-	else if (argc == 2)
-	{
-		validade_arg_str(argv[1], push);
-		nbrs = ft_split(argv[1], ' ');
-		push->a = create_node(TOP, nbrs[idx]);
-		while (nbrs[++idx])
-			add_nodes_value(push, nbrs[idx]);
-	}
-	
-}
-
-void	add_nodes_value(t_push *push, char *value)
-{
-	t_stack *new_node;
-	
 	if (push->a->next == NULL)
 	{
-		new_node = create_node(LAST, value);
+		new_node = create_node_str(LAST, value);
 		new_node->next = push->a;
 		new_node->prev = push->a;
 		push->a->next = new_node;
@@ -53,7 +29,7 @@ void	add_nodes_value(t_push *push, char *value)
 		push->a = push->a->next;
 		while (push->a->next && push->a->next->type != TOP)
 			push->a = push->a->next;
-		new_node = create_node(LAST, value);
+		new_node = create_node_str(LAST, value);
 		new_node->prev = push->a;
 		new_node->next = push->a->next;
 		push->a->type = MID;
@@ -64,7 +40,7 @@ void	add_nodes_value(t_push *push, char *value)
 	}
 }
 
-t_stack	*create_node(int type, char *value)
+t_stack	*create_node_str(int type, char *value)
 {
 	t_stack	*new_node;
 
@@ -76,21 +52,4 @@ t_stack	*create_node(int type, char *value)
 	new_node->next = NULL;
 	new_node->prev = NULL;
 	return (new_node);
-}
-
-void	validade_arg_str(char *numbers, t_push *push)
-{
-	int	idx;
-
-	idx = -1;
-	push->qtd = 0;
-	while (numbers[++idx])
-	{
-		if (!ft_isspace(numbers[idx]) && !ft_isdigit(numbers[idx]))
-			error("invalid string in ",numbers , ERROR);
-		if (ft_isdigit(numbers[idx]) && (ft_isspace(numbers[idx + 1])
-			|| numbers[idx + 1] == '\0'))
-			push->qtd++;
-	}
-	
 }

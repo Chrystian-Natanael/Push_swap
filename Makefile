@@ -62,7 +62,9 @@ LIBFT_DIR := lib/libft/
 
 SRCS =	$(addprefix $(SRCS_PATH),\
 		main.c \
-		validade_args.c \
+		validate_args.c \
+		utils.c \
+		nodes.c \
 		errors.c)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
