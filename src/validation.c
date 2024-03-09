@@ -6,35 +6,11 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:11:40 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 15:56:39 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 19:41:17 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	int_compare(t_push *push)
-{
-	int			idx;
-	int			compare;
-	t_element	*tmp;
-
-	tmp = push->stacks.stack_a->first;
-	while (tmp && tmp->next)
-	{
-		compare = 0;
-		idx = 0;
-		while (idx < push->size)
-		{
-			if (*((int*)tmp->content) == push->array[idx] && compare == 1)
-				ft_error(INT_DUPLICATED, (ft_itoa(*((int*)tmp->content))), "");
-			else if (*((int*)tmp->content) == push->array[idx])
-				compare = 1;
-			idx++;
-		}
-		tmp = tmp->next;
-	}
-	free(push->array);
-}
 
 void	args_validation(char **args)
 {
@@ -79,13 +55,12 @@ void	signal_validation(char **args, int *idx, int *odx)
 		ft_error(NOT_INT, args[*idx], "");
 }
 
-void	count_validation(int arg_nbr, char **args, t_push *push)
+void	validation(int arg_nbr, char **args, t_push *push)
 {
 	int			idx;
 	int			odx;
 
 	idx = 0;
-	push->size = 0;
 	push->stacks.stack_a = NULL;
 	push->stacks.stack_b = NULL;
 	if (arg_nbr < 2)
@@ -93,7 +68,8 @@ void	count_validation(int arg_nbr, char **args, t_push *push)
 	while (args[++idx])
 	{
 		odx = 0;
-		if (ft_strlen(args[idx]) == 0 && (args[idx][0] == '\0' || args[idx][0] == ' '))
+		if (ft_strlen(args[idx]) == 0 && (args[idx][0] == '\0'
+			|| args[idx][0] == ' '))
 			ft_error(INVALID_MSG, args[idx], "");
 		while (args[idx][odx] == ' ')
 		{
@@ -102,4 +78,5 @@ void	count_validation(int arg_nbr, char **args, t_push *push)
 			odx++;
 		}
 	}
+	args_validation(args);
 }

@@ -64,7 +64,8 @@ SRCS =	$(addprefix $(SRCS_PATH),\
 		main.c \
 		stack_build.c \
 		utils.c \
-		validation.c)
+		validation.c \
+		compare.c)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)

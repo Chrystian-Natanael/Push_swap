@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 15:19:23 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 19:40:19 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ typedef struct s_stack
 typedef struct s_push
 {
 	t_stack	stacks;
-	int		size;
 	int		*array;
 }	t_push;
 
 void	args_validation(char **args);
-void	count_validation(int arg_nbr, char **args, t_push *push);
+void	validation(int arg_nbr, char **args, t_push *push);
 void	stack_build(t_push *push, char **argv);
-void	int_compare(t_push *push);
+void	compare(t_push *push);
 int		list_to_compare(t_push *push);
 void	signal_validation(char **args, int *idx, int *odx);
 int		ft_isspace_line(char c);
+void	create_lst(t_element *new, t_push *push);
 
 #endif

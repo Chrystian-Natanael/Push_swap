@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:20:17 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 15:54:25 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 19:39:38 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	stack_build(t_push *push, char **argv)
 {
 	t_element	*new;
-	int		idx;
-	int		odx;
-	int		*nbr;
-	char	**args;
+	int			idx;
+	int			odx;
+	int			*nbr;
+	char		**args;
 
 	idx = 0;
 	while (argv[++idx])
@@ -31,16 +31,10 @@ void	stack_build(t_push *push, char **argv)
 			*nbr = ft_atoi(args[odx]);
 			new = ft_lstnewelement((void *)nbr);
 			if (!push->stacks.stack_a)
-			{
-				push->stacks.stack_a = malloc(sizeof(t_dolist));
-				push->stacks.stack_a->first = new;
-				push->size++;
-			}
+				create_lst(new, push);
 			else
-			{
 				ft_dolstadd_back(&push->stacks.stack_a, new);
-				push->size++;
-			}
+			push->stacks.stack_a->size++;
 		}
 		ft_free_split(args);
 	}
