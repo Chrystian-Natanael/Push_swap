@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 14:41:11 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 11:34:42 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 12:16:19 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,13 @@ int		ft_tolower(int c);
  * representing the integer
 */
 char	*ft_itoa(int n);
+
+/**@brief this function convert a string to a long.
+ * 
+ * @param nptr a string
+ * @return The converted long.
+*/
+long	ft_atol(const char *nptr);
 
 //! ***************************************************************************#
 //!                                   FT_STR                                   #

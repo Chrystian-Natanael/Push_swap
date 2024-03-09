@@ -91,7 +91,8 @@ SRCS_LIB :=	ft_isalpha.c \
 			ft_putnbr_hex.c \
 			ft_isspace.c \
 			ft_error.c \
-			ft_free_split.c
+			ft_free_split.c \
+			ft_atol.c
 
 SRCS_GNL :=	get_next_line.c \
 			get_next_line_utils.c
