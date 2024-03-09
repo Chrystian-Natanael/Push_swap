@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 15:00:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/06 09:22:45 by cnatanae         ###   ########.fr       */
+/*   Created: 2024/03/04 18:33:16 by cnatanae          #+#    #+#             */
+/*   Updated: 2024/03/09 11:37:35 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,11 @@
 int	main(int argc, char **argv)
 {
 	t_push	push;
-	int		idx;
 
-	idx = 0;
-	validade_args(argc, argv, &push);
-	if (push.a)
-		ft_printf("Node %d: %d and your type is %d\n", idx, \
-			push.a->value, push.a->type);
-	if (push.a && push.a->next)
-		push.a = push.a->next;
-	idx++;
-	while (push.a && push.a->type != TOP)
-	{
-		ft_printf("Node %d: %d and your type is %d\n", idx, \
-			push.a->value, push.a->type);
-		push.a = push.a->next;
-		idx++;
-	}
-	if (push.a)
-		free_stack(push.a);
+	count_validation(argc, argv, &push);
+	args_validation(argv);
+	stack_build(&push, argv);
+	list_to_compare(&push);
+	int_compare(&push);
 	return (0);
 }

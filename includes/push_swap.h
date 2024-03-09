@@ -5,71 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 15:01:17 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/06 09:05:25 by cnatanae         ###   ########.fr       */
+/*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
+/*   Updated: 2024/03/09 12:19:19 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h> // ! DELETE THIS
-
-/* read, write*/
-# include <unistd.h>
-
-/*malloc, free, exit*/
-# include <stdlib.h>
-
-/*libft*/
+// To use LIBFT functions
 # include "libft.h"
 
-/*Enum's*/
-typedef enum e_exit
-{
-	SUCESS,
-	FAILURE,
-}	t_exit;
+// To use INT_MIN and INT_MAX
+# include <limits.h>
 
-typedef enum e_type
-{
-	TOP,
-	MID,
-	LAST,
-}	t_type;
-
-typedef enum e_return
-{
-	IN,
-	OUT,
-	ERROR,
-}	t_return;
+# define PARAMETERS_MSG "Two or more parameters are required"
+# define INVALID_MSG "Invalid argument"
+# define INT_DUPLICATED "Duplicated number: "
+# define NOT_INT "Not a valid number: "
+# define INT_OVERFLOW "Number overflow: "
 
 typedef struct s_stack
 {
-	int				value;
 	struct s_stack	*next;
 	struct s_stack	*prev;
-	t_type			type;
+	int				value;
 }	t_stack;
 
 typedef struct s_push
 {
-	int		qtd;
-	t_stack	*a;
-	t_stack	*b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	t_stack	*first_a;
+	t_stack	*last_a;
+	t_stack	*first_b;
+	t_stack	*last_b;
+	int		size;
+	int		*array;
 }	t_push;
 
-/*Functions*/
-
-void	error(char *str1, char *str2, unsigned int retrn);
-int		ft_isspace(int c);
-void	validade_args(int argc, char **argv, t_push *push);
-void	add_nodes_str(t_push *push, char *value);
-t_stack	*create_node_str(int type, char *value);
-void	validade_arg_str(char *numbers, t_push *push);
-void	free_split(char **split);
-void	free_stack(t_stack *stack);
-void	validade_errors_init(int argc, char **argv, t_push *push, int *idx);
+void	args_validation(char **args);
+void	count_validation(int arg_nbr, char **args, t_push *push);
+void	stack_build(t_push *stack, char **argv);
+void	int_compare(t_push *stack);
+int		list_to_compare(t_push *stack);
+void	signal_validation(char **args, int *idx, int *odx);
 
 #endif

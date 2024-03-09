@@ -62,10 +62,9 @@ LIBFT_DIR := lib/libft/
 
 SRCS =	$(addprefix $(SRCS_PATH),\
 		main.c \
-		validate_args.c \
+		stack_build.c \
 		utils.c \
-		nodes.c \
-		errors.c)
+		validation.c)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)
@@ -104,9 +103,9 @@ define comp_objs
 	$(eval COUNT=$(shell expr $(COUNT) + 1))
 	$(COMP_OBJ)
 	$(SLEEP)
-	printf "$(WHITE)Compiling$(FCOLOR)$(YELLOW) PUSH_SWAP: %d%%\r$(FCOLOR)" $$(echo $$(($(COUNT) * 100 / $(words $(SRCS)))))
+	printf "$(WHITE) Compiling$(FCOLOR)$(YELLOW) PUSH_SWAP: %d%%\r$(FCOLOR)" $$(echo $$(($(COUNT) * 100 / $(words $(SRCS)))))
 	@if [ $(COUNT) -eq $(words $(SRCS)) ]; then \
-		printf "Compiled $(DARK_GREEN)PUSH_SWAP 100%%$(FCOLOR) ✅"; \
+		printf " Compiled $(DARK_GREEN)PUSH_SWAP 100%%$(FCOLOR) ✅"; \
 		printf "\n"; \
 	fi
 endef
@@ -127,7 +126,7 @@ endef
 define help
 	echo "${RED}Available targets:${RESET}"
 	printf "\n"
-	echo "${DARK_BLUE}re:${RESET}		${LIGHT_GRAY}Rebuild the program${RESET}"
+	echo "${DARK_BLUE}re:${RESET}	${LIGHT_GRAY}Rebuild the program${RESET}"
 	echo "${DARK_BLUE}all:${RESET}	${LIGHT_GRAY}Build push swap${RESET}"
 	echo "${DARK_BLUE}bonus:${RESET}	${LIGHT_GRAY}Build checker${RESET}"
 	echo "${DARK_BLUE}clean:${RESET}	${LIGHT_GRAY}Remove the object files${RESET}"
