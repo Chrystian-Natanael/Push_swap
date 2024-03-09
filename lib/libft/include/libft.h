@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 14:41:11 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 10:47:13 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:04:30 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -509,6 +509,6 @@ void	ft_error(char *str1, char *str2, char *str3);
  * @param split a pointer to the first element of the split
  * @return void
 */
-void	free_split(char **split);
+void	ft_free_split(char **split);
 
 #endif
