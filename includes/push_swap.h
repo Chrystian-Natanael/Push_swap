@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 12:19:19 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 13:30:06 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <limits.h>
 
 # define PARAMETERS_MSG "Two or more parameters are required"
-# define INVALID_MSG "Invalid argument"
+# define INVALID_MSG "Invalid argument: "
 # define INT_DUPLICATED "Duplicated number: "
 # define NOT_INT "Not a valid number: "
 # define INT_OVERFLOW "Number overflow: "
