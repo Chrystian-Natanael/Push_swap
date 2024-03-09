@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 14:18:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 10:25:03 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 11:15:24 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_atoi(const char *nptr)
 	value = 0;
 	idx = ft_isspace_atoi(nptr);
 	odd = ft_odd(nptr[idx]);
-	if (nptr[idx] == '+' || nptr[idx] == '-')
+	while (nptr[idx] == '+' || nptr[idx] == '-')
 		idx++;
 	while (nptr[idx] >= '0' && nptr[idx] <= '9')
 		value = value * 10 + (nptr[idx++] - '0');
