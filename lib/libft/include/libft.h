@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 14:41:11 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 15:52:37 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:21:52 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_list
  * @param content a pointer to the content to put in the new node
  * @return The pointer to the allocated memory block with the new node
 */
-t_list	*ft_lstnew(void *content);
+t_list		*ft_lstnew(void *content);
 
 /**@brief this function Adds the node ’new’ at the beginning of the list.
  * 
@@ -88,21 +88,29 @@ t_list	*ft_lstnew(void *content);
  * @param new a pointer to the new node to add
  * @return void
 */
-void	ft_lstadd_front(t_list **lst, t_list *new);
+void		ft_lstadd_front(t_list **lst, t_list *new);
 
 /**@brief this function Counts the number of nodes in a list.
  * 
  * @param lst a pointer to the first node of the list
  * @return The number of nodes in the list
 */
-int		ft_lstsize(t_list *lst);
+int			ft_lstsize(t_list *lst);
 
 /**@brief this function Returns the last node of the list.
  * 
  * @param lst a pointer to the first node of the list
  * @return The pointer to the last node of the list
 */
-t_list	*ft_lstlast(t_list *lst);
+t_list		*ft_lstlast(t_list *lst);
+
+/**@brief this function Adds the node ’new’ at the end of the list.
+ * 
+ * @param lst a pointer to the first node of the list
+ * @param new a pointer to the new node to add
+ * @return void
+*/
+void		ft_lstadd_back(t_list **lst, t_list *new);
 
 /**@brief this function Takes as a parameter a node and frees the memory of
  * the node’s content using the function ’del’ given
@@ -113,7 +121,7 @@ t_list	*ft_lstlast(t_list *lst);
  * @param del the function used to delete the content of the node
  * @return void
 */
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void		ft_lstdelone(t_list *lst, void (*del)(void *));
 
 /**@brief this function Deletes and frees the given node and every
  * successor of that node, using the function ’del’
@@ -125,7 +133,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
  * @param del the function used to delete the content of the node
  * @return void
 */
-void	ft_lstclear(t_list **lst, void (*del)(void *));
+void		ft_lstclear(t_list **lst, void (*del)(void *));
 
 /**@brief this function Iterates the list ’lst’ and applies the function
  * ’f’ on the content of each node.
@@ -134,7 +142,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
  * @param f the function to apply
  * @return void
 */
-void	ft_lstiter(t_list *lst, void (*f)(void *));
+void		ft_lstiter(t_list *lst, void (*f)(void *));
 
 /**@brief this function Iterates the list ’lst’ and applies the function
  * ’f’ on the content of each node. Creates a new
@@ -147,7 +155,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
  * @param del the function used to delete the content of the node
  * @return The pointer to the new list
 */
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 //! ***************************************************************************#
 //!                                    FT_IS                                   #
@@ -159,14 +167,14 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
  * @param c a int
  * @return Int '1' for true or int '0' for false.
  * */
-int		ft_isalpha(int c);
+int			ft_isalpha(int c);
 
 /**@brief Checks if the int 'c' is a digit character from the ASCII table.
  *
  * @param c a int
  * @return Int '1' for true or int '0' for false.
  */
-int		ft_isdigit(int c);
+int			ft_isdigit(int c);
 
 /**@brief Checks if the int 'c' is a alphanumeric character
  * from the ASCII table.
@@ -174,14 +182,14 @@ int		ft_isdigit(int c);
  * @param c a int
  * @return Int '1' for true or int '0' for false.
  */
-int		ft_isalnum(int c);
+int			ft_isalnum(int c);
 
 /**@brief Checks if the int 'c' is in the ASCII table.
  *
  * @param c a int
  * @return Int '1' for true or int '0' for false.
  */
-int		ft_isascii(int c);
+int			ft_isascii(int c);
 
 /**@brief Checks if the int 'c' is a printable character
  * (including space) in the ASCII table.
@@ -189,14 +197,14 @@ int		ft_isascii(int c);
  * @param c a int
  * @return Int '1' for true or int '0' for false.
  */
-int		ft_isprint(int c);
+int			ft_isprint(int c);
 
 /**@brief This function verify if character is a space
  * 
  * @param c character will be verify
  * @return int where 0 is space and 1 if is not.
 */
-int		ft_isspace(char c);
+int			ft_isspace(char c);
 
 //! ***************************************************************************#
 //!                                    FT_TO                                   #
@@ -207,21 +215,21 @@ int		ft_isspace(char c);
  * @param nptr a string
  * @return The converted int.
  */
-int		ft_atoi(const char *nptr);
+int			ft_atoi(const char *nptr);
 
 /**@brief this function convert a char to uppercase.
  *
  * @param c a int char to convert
  * @return The converted int.
  */
-int		ft_toupper(int c);
+int			ft_toupper(int c);
 
 /**@brief this function convert a char to lowercase.
  *
  * @param c a int char to convert
  * @return The converted int.
  */
-int		ft_tolower(int c);
+int			ft_tolower(int c);
 
 /**@brief this function Allocates (with malloc(3)) and returns a string
  * representing the integer received as an argument.
@@ -231,14 +239,14 @@ int		ft_tolower(int c);
  * @return The pointer to the allocated memory block with the string
  * representing the integer
 */
-char	*ft_itoa(int n);
+char		*ft_itoa(int n);
 
 /**@brief this function convert a string to a long.
  * 
  * @param nptr a string
  * @return The converted long.
 */
-long	ft_atol(const char *nptr);
+long		ft_atol(const char *nptr);
 
 //! ***************************************************************************#
 //!                                   FT_STR                                   #
@@ -250,14 +258,14 @@ long	ft_atol(const char *nptr);
  * @param s2 a string to compare
  * @return The difference between the two strings in ASCII.
  */
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
 /**@brief this function count the number of characters in a string.
  *
  * @param s a string
  * @return The number of characters in the string.
  */
-size_t	ft_strlen(const char *s);
+size_t		ft_strlen(const char *s);
 
 /**@brief this function copy a string to destination.
  *
@@ -266,7 +274,7 @@ size_t	ft_strlen(const char *s);
  * @param size the number of bytes to copy
  * @return The number of bytes copied.
  */
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 
 /**@brief this function concatenate two strings until the size is reached.
  *
@@ -275,7 +283,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
  * @param size the number of bytes to concatenate
  * @return The number of bytes concatenated.
  */
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
+size_t		ft_strlcat(char *dst, const char *src, size_t size);
 
 /**@brief this function search for a little string in a string.
  *
@@ -284,7 +292,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
  * @param len the number of bytes to search
  * @return The pointer to the first occurrence of the little string
  */
-char	*ft_strnstr(const char *big, const char *little, size_t len);
+char		*ft_strnstr(const char *big, const char *little, size_t len);
 
 /**@brief this function search for a character in a string.
  *
@@ -292,7 +300,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
  * @param c the character to search
  * @return The pointer to the first occurrence of the character
  */
-char	*ft_strchr(const char *s, int c);
+char		*ft_strchr(const char *s, int c);
 
 /**@brief this function search the last occurrence of a character in a string.
  *
@@ -300,7 +308,7 @@ char	*ft_strchr(const char *s, int c);
  * @param c the character to search
  * @return The pointer to the last occurrence of the character
  */
-char	*ft_strrchr(const char *s, int c);
+char		*ft_strrchr(const char *s, int c);
 
 /**@brief this function duplicate a string.
  * in a allocated memory block.
@@ -308,7 +316,7 @@ char	*ft_strrchr(const char *s, int c);
  * @param s a string
  * @return The pointer to the allocated memory block
  */
-char	*ft_strdup(const char *s);
+char		*ft_strdup(const char *s);
 
 /**@brief this function Allocates (with malloc(3)) and returns a substring
  * from the string ’s’.
@@ -320,7 +328,7 @@ char	*ft_strdup(const char *s);
  * @param len the number of bytes to copy
  * @return The pointer to the allocated memory block
  */
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
 
 /**@brief this function Allocates (with malloc(3)) and returns a new
  * string, which is the result of the concatenation
@@ -329,7 +337,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
  * @param s1 a string
  * @param s2 a string
  */
-char	*ft_strjoin(char const *s1, char const *s2);
+char		*ft_strjoin(char const *s1, char const *s2);
 
 /**@brief this function Allocates (with malloc(3)) and returns a copy of
  * ’s1’ with the characters specified in ’set’ removed
@@ -339,7 +347,7 @@ char	*ft_strjoin(char const *s1, char const *s2);
  * @param set a string
  * @return The pointer to the allocated memory block
 */
-char	*ft_strtrim(char const *s1, char const *set);
+char		*ft_strtrim(char const *s1, char const *set);
 
 /**@brief this function Allocates (with malloc(3)) and returns an array
  * of strings obtained by splitting ’s’ using the
@@ -350,7 +358,7 @@ char	*ft_strtrim(char const *s1, char const *set);
  * @param c a character
  * @return The pointer to the allocated memory block with the strings
 */
-char	**ft_split(char const *s, char c);
+char		**ft_split(char const *s, char c);
 
 /**@brief this function Applies the function ’f’ to each character of the
  * string ’s’, and passing its index as first argument
@@ -361,7 +369,7 @@ char	**ft_split(char const *s, char c);
  * @param f a function to apply
  * @return The pointer to the allocated memory block with the string
 */
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 
 /**@brief this function Applies the function ’f’ on each character of
  * the string passed as argument, passing its index
@@ -372,7 +380,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
  * @param f a function to apply
  * @return void
 */
-void	ft_striteri(char *s, void (*f)(unsigned int, char *));
+void		ft_striteri(char *s, void (*f)(unsigned int, char *));
 
 //! ***************************************************************************#
 //!                                   FT_MEM                                   #
@@ -386,7 +394,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *));
  * @return The difference between the two memory blocks (equal  to,
  * or greater than zero).
  */
-int		ft_memcmp(const void *s1, const void *s2, size_t n);
+int			ft_memcmp(const void *s1, const void *s2, size_t n);
 
 /**@brief this function fills a memory block with a null byte.
  *
@@ -394,7 +402,7 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
  * @param n the number of bytes to fill
  * @return void.
  */
-void	ft_bzero(void *s, size_t n);
+void		ft_bzero(void *s, size_t n);
 
 /**@brief this function fills a memory block with a any byte.
  *
@@ -403,7 +411,7 @@ void	ft_bzero(void *s, size_t n);
  * @param n the number of bytes to fill
  * @return the pointer to the memory block.
  */
-void	*ft_memset(void *s, int c, size_t n);
+void		*ft_memset(void *s, int c, size_t n);
 
 /**@brief this function copy a memory block to destination.
  *
@@ -412,7 +420,7 @@ void	*ft_memset(void *s, int c, size_t n);
  * @param n the number of bytes to copy
  * @return the pointer to the memory block.
  */
-void	*ft_memcpy(void *dest, const void *src, size_t n);
+void		*ft_memcpy(void *dest, const void *src, size_t n);
 
 /**@brief this function copy a memory block to destination.
  * but, From back to front.
@@ -422,7 +430,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n);
  * @param n the number of bytes to copy
  * @return the pointer to the memory block.
  */
-void	*ft_memmove(void *dest, const void *src, size_t count);
+void		*ft_memmove(void *dest, const void *src, size_t count);
 
 /**@brief this function search for a byte in a memory block.
  *
@@ -431,7 +439,7 @@ void	*ft_memmove(void *dest, const void *src, size_t count);
  * @param n the number of bytes to search
  * @return The pointer to the first occurrence of the byte
  */
-void	*ft_memchr(const void *s, int c, size_t n);
+void		*ft_memchr(const void *s, int c, size_t n);
 
 /**@brief this function allocate a memory block.
  * Adding null bytes
@@ -440,7 +448,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
  * @param size the size of each byte
  * @return The pointer to the allocated memory block
  */
-void	*ft_calloc(size_t nmemb, size_t size);
+void		*ft_calloc(size_t nmemb, size_t size);
 
 //! ***************************************************************************#
 //!                                   FT_PUT                                   #
@@ -453,7 +461,7 @@ void	*ft_calloc(size_t nmemb, size_t size);
  * @param fd a file descriptor
  * @return void
 */
-int		ft_putchar_fd(char c, int fd);
+int			ft_putchar_fd(char c, int fd);
 
 /**@brief this function Outputs the string ’s’ to the given file
  * descriptor.
@@ -462,7 +470,7 @@ int		ft_putchar_fd(char c, int fd);
  * @param fd a file descriptor
  * @return void
 */
-int		ft_putstr_fd(char *s, int fd);
+int			ft_putstr_fd(char *s, int fd);
 
 /**@brief this function Outputs the string ’s’ to the given file descriptor
  * followed by a newline.
@@ -471,7 +479,7 @@ int		ft_putstr_fd(char *s, int fd);
  * @param fd a file descriptor
  * @return void
 */
-void	ft_putendl_fd(char *s, int fd);
+void		ft_putendl_fd(char *s, int fd);
 
 /**@brief this function Outputs the integer ’n’ to the given file
  * descriptor.
@@ -480,7 +488,7 @@ void	ft_putendl_fd(char *s, int fd);
  * @param fd a file descriptor
  * @return void	
 */
-void	ft_putnbr_fd(int n, int fd);
+void		ft_putnbr_fd(int n, int fd);
 
 /**@brief This function print a number in a base 16 (hexadecimal)
  * 
@@ -488,7 +496,7 @@ void	ft_putnbr_fd(int n, int fd);
  * @param base base to be printed
  * @return Number of characters printed
 */
-int		ft_putnbr_hex(long long num, char *base);
+int			ft_putnbr_hex(long long num, char *base);
 
 //! ***************************************************************************#
 //!                                   FT_UTILS                                 #
@@ -501,14 +509,14 @@ int		ft_putnbr_hex(long long num, char *base);
  * @param str3 third part of the message
  * @return void
 */
-void	ft_error(char *str1, char *str2, char *str3);
+void		ft_error(char *str1, char *str2, char *str3);
 
 /**@brief This function free a split
  * 
  * @param split a pointer to the first element of the split
  * @return void
 */
-void	ft_free_split(char **split);
+void		ft_free_split(char **split);
 
 //! ***************************************************************************#
 //!                            DOUBLE LINKED LIST                              #
@@ -542,7 +550,8 @@ typedef struct s_dolist
 t_element	*ft_lstpickel(t_dolist *lst, int index);
 
 /**
- * @brief Removes and returns an element from a linked list at the specified index.
+ * @brief	Removes and returns an element from a linked list at the
+ * 			specified index.
  *
  * @param lst	The linked list from which to remove the element.
  * @param index	The index of the element to be removed.
@@ -578,12 +587,14 @@ t_element	*ft_lstnewelement(void *content);
 void		ft_lstadd_after(t_dolist *lst, t_element *ref, t_element *el);
 
 /**
- * @brief	Adds a new element `el` before the reference element `ref` in the linked
+ * @brief	Adds a new element `el` before the reference element `ref`
+ * 			in the linked
  * 			list `lst`.
  * 			If `el` is NULL, the function returns immediately.
  * 			If `ref` is the first element of the list, `el` becomes the new first
  * 			element.
- * 			The `prev` and `next` pointers of `el` and the reference element are updated
+ * 			The `prev` and `next` pointers of `el` and the reference
+ * 			element are updated
  * 			accordingly.
  * 			The size of the list `lst` is incremented by 1.
  *
@@ -593,14 +604,17 @@ void		ft_lstadd_after(t_dolist *lst, t_element *ref, t_element *el);
  */
 void		ft_lstadd_before(t_dolist *lst, t_element *ref, t_element *el);
 
-/**@brief this function Adds the node ’new’ at the end of the list.
- * 
- * @param lst a pointer to the first node of the list
- * @param new a pointer to the new node to add
- * @return void
-*/
-void	ft_dolstadd_back(t_dolist **lst, t_element *new);
-
-void	ft_lstadd_back(t_list **lst, t_list *new);
+/**
+ * @brief	Adds a new element to the end of the linked list `lst`.
+ * 			If `new` is NULL, the function returns immediately.
+ * 			If the list is empty, `new` becomes the first and last element of the list.
+ * 			The `prev` and `next` pointers of the last element and `new` are updated
+ * 			accordingly.
+ * 			The size of the list `lst` is incremented by 1.
+ *
+ * @param lst The linked list to add the element to.
+ * @param new The new element to be added.
+ */
+void		ft_dolstadd_back(t_dolist **lst, t_element *new);
 
 #endif
