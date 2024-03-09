@@ -92,7 +92,12 @@ SRCS_LIB :=	ft_isalpha.c \
 			ft_isspace.c \
 			ft_error.c \
 			ft_free_split.c \
-			ft_atol.c
+			ft_atol.c \
+			ft_lstpickel.c \
+			ft_lstpop.c \
+			ft_lstnewelement.c \
+			ft_lstadd_after.c \
+			ft_lstadd_before.c
 
 SRCS_GNL :=	get_next_line.c \
 			get_next_line_utils.c

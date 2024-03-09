@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 14:41:11 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 12:16:19 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 14:14:25 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -517,5 +517,88 @@ void	ft_error(char *str1, char *str2, char *str3);
  * @return void
 */
 void	ft_free_split(char **split);
+
+//! ***************************************************************************#
+//!                            DOUBLE LINKED LIST                              #
+//! ***************************************************************************#
+
+typedef struct s_element
+{
+	void				*content;
+	struct s_element	*next;
+	struct s_element	*prev;
+}	t_element;
+
+typedef struct s_dolist
+{
+	t_element	*first;
+	t_element	*last;
+	size_t		size;
+}	t_dolist;
+
+/**
+ * @brief Returns an element from a linked list at the specified index.
+ *
+ * @param lst	The linked list from which to return the element.
+ * @param index	The index of the element to be returned.
+ * 				If negative, the element is returned from the end of the list.
+ * 				If the absolute value of the index is greater than the size of the
+ * 				list, NULL is returned.
+ * @return	The element at the specified index, or NULL if the index is out of
+ *			range.
+ */
+t_element	*ft_lstpickel(t_dolist *lst, int index);
+
+/**
+ * @brief Removes and returns an element from a linked list at the specified index.
+ *
+ * @param lst	The linked list from which to remove the element.
+ * @param index	The index of the element to be removed.
+ * @return	The removed element, or NULL if the index is out of range.
+ */
+t_element	*ft_lstpop(t_dolist *lst, int index);
+
+/**
+ * @brief Creates a new element for a linked list.
+ *
+ * This function creates a new element for a linked list with the specified
+ * content.
+ *
+ * @param content The content to be stored in the new element.
+ * @return A pointer to the new element, or NULL if memory allocation fails.
+ */
+t_element	*ft_lstnewelement(void *content);
+
+/**
+ * @brief	Adds a new element `el` after the reference element `ref` in the linked
+ *			list `lst`.
+ *			If `el` is NULL, the function returns immediately.
+ *			If `ref` is the last element of the list, `el` becomes the new last
+ *			element.
+ *			The `prev` and `next` pointers of `el` and the reference element are updated
+ *			accordingly.
+ *			The size of the list `lst` is incremented by 1.
+ *
+ * @param lst The linked list to add the element to.
+ * @param ref The reference element after which the new element will be added.
+ * @param el  The new element to be added.
+ */
+void		ft_lstadd_after(t_dolist *lst, t_element *ref, t_element *el);
+
+/**
+ * @brief	Adds a new element `el` before the reference element `ref` in the linked
+ * 			list `lst`.
+ * 			If `el` is NULL, the function returns immediately.
+ * 			If `ref` is the first element of the list, `el` becomes the new first
+ * 			element.
+ * 			The `prev` and `next` pointers of `el` and the reference element are updated
+ * 			accordingly.
+ * 			The size of the list `lst` is incremented by 1.
+ *
+ * @param lst The linked list to add the element to.
+ * @param ref The reference element before which the new element will be added.
+ * @param el  The new element to be added.
+ */
+void		ft_lstadd_before(t_dolist *lst, t_element *ref, t_element *el);
 
 #endif
