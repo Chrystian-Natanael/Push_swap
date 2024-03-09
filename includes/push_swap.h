@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 13:30:06 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:19:23 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,23 @@
 
 typedef struct s_stack
 {
-	struct s_stack	*next;
-	struct s_stack	*prev;
-	int				value;
+	t_dolist	*stack_a;
+	t_dolist	*stack_b;
 }	t_stack;
 
 typedef struct s_push
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	t_stack	*first_a;
-	t_stack	*last_a;
-	t_stack	*first_b;
-	t_stack	*last_b;
+	t_stack	stacks;
 	int		size;
 	int		*array;
 }	t_push;
 
 void	args_validation(char **args);
 void	count_validation(int arg_nbr, char **args, t_push *push);
-void	stack_build(t_push *stack, char **argv);
-void	int_compare(t_push *stack);
-int		list_to_compare(t_push *stack);
+void	stack_build(t_push *push, char **argv);
+void	int_compare(t_push *push);
+int		list_to_compare(t_push *push);
 void	signal_validation(char **args, int *idx, int *odx);
+int		ft_isspace_line(char c);
 
 #endif

@@ -97,7 +97,8 @@ SRCS_LIB :=	ft_isalpha.c \
 			ft_lstpop.c \
 			ft_lstnewelement.c \
 			ft_lstadd_after.c \
-			ft_lstadd_before.c
+			ft_lstadd_before.c \
+			ft_dolstadd_back.c
 
 SRCS_GNL :=	get_next_line.c \
 			get_next_line_utils.c

@@ -6,34 +6,34 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:11:40 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 13:33:24 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:56:39 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	int_compare(t_push *stack)
+void	int_compare(t_push *push)
 {
-	int		idx;
-	int		compare;
-	t_stack	*tmp;
+	int			idx;
+	int			compare;
+	t_element	*tmp;
 
-	tmp = stack->first_a;
+	tmp = push->stacks.stack_a->first;
 	while (tmp && tmp->next)
 	{
 		compare = 0;
 		idx = 0;
-		while (idx < stack->size)
+		while (idx < push->size)
 		{
-			if (tmp->value == stack->array[idx] && compare == 1)
-				ft_error(INT_DUPLICATED, (ft_itoa(tmp->value)), "");
-			else if (tmp->value == stack->array[idx])
+			if (*((int*)tmp->content) == push->array[idx] && compare == 1)
+				ft_error(INT_DUPLICATED, (ft_itoa(*((int*)tmp->content))), "");
+			else if (*((int*)tmp->content) == push->array[idx])
 				compare = 1;
 			idx++;
 		}
 		tmp = tmp->next;
 	}
-	free(stack->array);
+	free(push->array);
 }
 
 void	args_validation(char **args)
@@ -49,7 +49,7 @@ void	args_validation(char **args)
 		{
 			signal_validation(args, &idx, &odx);
 			if (ft_isdigit(args[idx][odx]) && !ft_isdigit(args[idx][odx + 1])
-				&& !ft_isspace(args[idx][odx + 1])
+				&& !ft_isspace_line(args[idx][odx + 1])
 				&& args[idx][odx + 1] != '\0')
 				ft_error(NOT_INT, args[idx], "");
 		}
@@ -74,7 +74,7 @@ void	signal_validation(char **args, int *idx, int *odx)
 			ft_error(NOT_INT, args[*idx], "");
 		(*odx)++;
 	}
-	if (!ft_isdigit(args[*idx][*odx]) && !ft_isspace(args[*idx][*odx])
+	if (!ft_isdigit(args[*idx][*odx]) && !ft_isspace_line(args[*idx][*odx])
 		&& args[*idx][*odx] != '\0')
 		ft_error(NOT_INT, args[*idx], "");
 }
@@ -82,16 +82,24 @@ void	signal_validation(char **args, int *idx, int *odx)
 void	count_validation(int arg_nbr, char **args, t_push *push)
 {
 	int			idx;
+	int			odx;
 
 	idx = 0;
 	push->size = 0;
-	push->stack_a = NULL;
-	push->stack_b = NULL;
+	push->stacks.stack_a = NULL;
+	push->stacks.stack_b = NULL;
 	if (arg_nbr < 2)
-		ft_error(PARAMETERS_MSG, "", "");
+		exit(EXIT_FAILURE);
 	while (args[++idx])
 	{
+		odx = 0;
 		if (ft_strlen(args[idx]) == 0 && (args[idx][0] == '\0' || args[idx][0] == ' '))
 			ft_error(INVALID_MSG, args[idx], "");
+		while (args[idx][odx] == ' ')
+		{
+			if (args[idx][odx + 1] == '\0')
+				ft_error(INVALID_MSG, args[idx], "");
+			odx++;
+		}
 	}
 }

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_dolstadd_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 12:58:29 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 15:51:41 by cnatanae         ###   ########.fr       */
+/*   Created: 2024/03/09 15:52:01 by cnatanae          #+#    #+#             */
+/*   Updated: 2024/03/09 15:52:10 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_dolstadd_back(t_dolist **lst, t_element *new)
 {
-	t_list	*aux;
+	t_element	*aux;
 
-	aux = *lst;
+	aux = (*lst)->first;
 	if (aux == NULL)
 	{
-		*lst = new;
+		(*lst)->first = new;
 		return ;
 	}
 	while (aux->next)

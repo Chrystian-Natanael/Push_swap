@@ -6,25 +6,29 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:19:30 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 11:42:44 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:20:25 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	list_to_compare(t_push *stack)
+int	ft_isspace_line(char c)
 {
-	int		idx;
-	t_stack	*tmp;
+	return (c == 9 ||(c >=11 && c <= 13) || c == ' ');
+}
+int	list_to_compare(t_push *push)
+{
+	int			idx;
+	t_element	*tmp;
 
-	tmp = stack->first_a;
-	stack->array = malloc(sizeof(int) * stack->size);
-	if (!stack->array)
+	tmp = push->stacks.stack_a->first;
+	push->array = malloc(sizeof(int) * push->size);
+	if (!push->array)
 		return (1);
 	idx = 0;
 	while (tmp)
 	{
-		stack->array[idx] = tmp->value;
+		push->array[idx] = *((int*)tmp->content);
 		tmp = tmp->next;
 		idx++;
 	}

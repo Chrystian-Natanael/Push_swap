@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 14:41:11 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 14:14:25 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:52:37 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,6 @@ int		ft_lstsize(t_list *lst);
  * @return The pointer to the last node of the list
 */
 t_list	*ft_lstlast(t_list *lst);
-
-/**@brief this function Adds the node ’new’ at the end of the list.
- * 
- * @param lst a pointer to the first node of the list
- * @param new a pointer to the new node to add
- * @return void
-*/
-void	ft_lstadd_back(t_list **lst, t_list *new);
 
 /**@brief this function Takes as a parameter a node and frees the memory of
  * the node’s content using the function ’del’ given
@@ -600,5 +592,15 @@ void		ft_lstadd_after(t_dolist *lst, t_element *ref, t_element *el);
  * @param el  The new element to be added.
  */
 void		ft_lstadd_before(t_dolist *lst, t_element *ref, t_element *el);
+
+/**@brief this function Adds the node ’new’ at the end of the list.
+ * 
+ * @param lst a pointer to the first node of the list
+ * @param new a pointer to the new node to add
+ * @return void
+*/
+void	ft_dolstadd_back(t_dolist **lst, t_element *new);
+
+void	ft_lstadd_back(t_list **lst, t_list *new);
 
 #endif

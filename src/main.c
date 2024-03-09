@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:16 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 13:08:27 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:39:53 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	main(int argc, char **argv)
 	stack_build(&push, argv);
 	list_to_compare(&push);
 	int_compare(&push);
-	while (push.first_a)
+	while (push.stacks.stack_a->first)
 	{
-		ft_printf("%d\n", push.first_a->value);
-		push.first_a = push.first_a->next;
+		ft_printf("%d\n", (*(int *)push.stacks.stack_a->first->content));
+		push.stacks.stack_a->first = push.stacks.stack_a->first->next;
 	}
 	return (0);
 }
