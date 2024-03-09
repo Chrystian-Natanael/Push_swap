@@ -6,13 +6,13 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 14:18:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2023/10/23 14:23:04 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/09 10:25:03 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_isspace(const char *nptr)
+static int	ft_isspace_atoi(const char *nptr)
 {
 	int	idx;
 
@@ -43,7 +43,7 @@ int	ft_atoi(const char *nptr)
 	int	idx;
 
 	value = 0;
-	idx = ft_isspace(nptr);
+	idx = ft_isspace_atoi(nptr);
 	odd = ft_odd(nptr[idx]);
 	if (nptr[idx] == '+' || nptr[idx] == '-')
 		idx++;

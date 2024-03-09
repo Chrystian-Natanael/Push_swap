@@ -1,11 +1,15 @@
-# ! --------------------------------------------------------------------------------------------------------------------------------
-# ! NAME
+#! ******************************************************************************#
+#                                   NAME                                         #
+#! ******************************************************************************#
 
 NAME := libft.a
+.DEFAULT_GOAL := all
 .PHONY:	all clean fclean re bonus
+.SILENT:
 
-# ! --------------------------------------------------------------------------------------------------------------------------------
-# ! COLORS
+#! ******************************************************************************#
+#                                   COLORS                                       #
+#! ******************************************************************************#
 
 YELLOW = \033[33m
 DEFAULT=\033[39m
@@ -26,26 +30,20 @@ MAGENTA=\033[95m
 CYAN=\033[96m
 WHITE=\033[97m
 FCOLOR = \033[0m
-# ! --------------------------------------------------------------------------------------------------------------------------------
-# ! PATH
+
+#! ******************************************************************************#
+#                                   PATHS                                        #
+#! ******************************************************************************#
 
 PATHSRC_LIB = source/libft
 PATHSRC_GNL = source/gnl
 PATHSRC_PRINTF = source/printf
-PATHOBJ = obj
+PATHOBJ = build
 PATCHINLCUDE = include/
 
-# ! --------------------------------------------------------------------------------------------------------------------------------
-# ! COMMANDS
-
-SHELL := /bin/bash
-MKDIR := mkdir -p
-CC := cc
-AR := ar -rcs
-RM := rm -rf
-
-# ! --------------------------------------------------------------------------------------------------------------------------------
-# ! FILES
+#! ******************************************************************************#
+#                                   FILES                                        #
+#! ******************************************************************************#
 
 SRCS_LIB :=	ft_isalpha.c \
 			ft_isdigit.c \
@@ -90,7 +88,10 @@ SRCS_LIB :=	ft_isalpha.c \
 			ft_lstclear.c \
 			ft_lstiter.c \
 			ft_lstmap.c \
-			ft_putnbr_hex.c
+			ft_putnbr_hex.c \
+			ft_isspace.c \
+			ft_error.c \
+			ft_freesplit.c
 
 SRCS_GNL :=	get_next_line.c \
 			get_next_line_utils.c
@@ -109,59 +110,71 @@ OBJS_LIB = $(patsubst %, $(PATHOBJ)/%, $(notdir $(SRCS_LIB:.c=.o)))
 OBJS_GNL = $(patsubst %, $(PATHOBJ)/%, $(notdir $(SRCS_GNL:.c=.o)))
 OBJS_PRINTF = $(patsubst %, $(PATHOBJ)/%, $(notdir $(SRCS_PRINTF:.c=.o)))
 
+
+#! ******************************************************************************#
+#                                   COMMANDS                                     #
+#! ******************************************************************************#
+
+SHELL := /bin/bash
+MKDIR := mkdir -p
+CC := cc
+AR := ar -rcs
+RM := rm -rf
+
+#! ******************************************************************************#
+#                                   FLAGS E VARIABLES                            #
+#! ******************************************************************************#
+
 CFLAGS := -Wall -Wextra -Werror -g3 -Ofast
-
-# ! --------------------------------------------------------------------------------------------------------------------------------
-# ! OTHER VARIABLES
-
 COUNT_LIB ?= 0
 COUNT_GNL ?= 0
 COUNT_PRINTF ?= 0
 
-# ! --------------------------------------------------------------------------------------------------------------------------------
-# ! RULES 
+#! ******************************************************************************#
+#                                      RULES                                     #
+#! ******************************************************************************#
 
 all: $(PATHOBJ) $(NAME)
-	@sleep 0.01
+	sleep 0.01
 
 $(PATHOBJ):
-	@$(MKDIR) $@
+	$(MKDIR) $@
 
 $(PATHOBJ)/%.o: $(PATHSRC_LIB)/%.c 
-	@$(eval COUNT_LIB=$(shell expr $(COUNT_LIB) + 1))
-	@$(CC) $(CFLAGS) -I$(PATCHINLCUDE) -c $< -o $@
-	@printf "Compiling $(YELLOW)LIBFT %d%%\r$(FCOLOR)" $$(echo $$(($(COUNT_LIB) * 100 / $(words $(SRCS_LIB)))))
+	$(eval COUNT_LIB=$(shell expr $(COUNT_LIB) + 1))
+	$(CC) $(CFLAGS) -I$(PATCHINLCUDE) -c $< -o $@
+	printf "Compiling $(YELLOW)LIBFT %d%%\r$(FCOLOR) " $$(echo $$(($(COUNT_LIB) * 100 / $(words $(SRCS_LIB)))))
 	@if [ $(COUNT_LIB) -eq $(words $(SRCS_LIB)) ]; then \
 		printf "Compiled $(DARK_GREEN)LIBFT  100%%$(FCOLOR) ✅"; \
 		printf "\n"; \
 	fi
 
 $(PATHOBJ)/%.o: $(PATHSRC_GNL)/%.c 
-	@$(eval COUNT_GNL=$(shell expr $(COUNT_GNL) + 1))
-	@$(CC) $(CFLAGS) -I$(PATCHINLCUDE) -c $< -o $@
-	@printf "Compiling $(YELLOW)GNL %d%%\r$(FCOLOR)" $$(echo $$(($(COUNT_GNL) * 100 / $(words $(SRCS_GNL)))))
+	$(eval COUNT_GNL=$(shell expr $(COUNT_GNL) + 1))
+	$(CC) $(CFLAGS) -I$(PATCHINLCUDE) -c $< -o $@
+	printf " Compiling $(YELLOW)GNL %d%%\r$(FCOLOR)" $$(echo $$(($(COUNT_GNL) * 100 / $(words $(SRCS_GNL)))))
 	@if [ $(COUNT_GNL) -eq $(words $(SRCS_GNL)) ]; then \
-		printf "Compiled $(DARK_GREEN)GNL    100%%$(FCOLOR) ✅"; \
+		printf " Compiled $(DARK_GREEN)GNL    100%%$(FCOLOR) ✅"; \
 		printf "\n"; \
 	fi
 
 $(PATHOBJ)/%.o: $(PATHSRC_PRINTF)/%.c 
-	@$(eval COUNT_PRINTF=$(shell expr $(COUNT_PRINTF) + 1))
-	@$(CC) $(CFLAGS) -I$(PATCHINLCUDE) -c $< -o $@
-	@printf "Compiling $(YELLOW)PRINTF %d%%\r$(FCOLOR)" $$(echo $$(($(COUNT_PRINTF) * 100 / $(words $(SRCS_PRINTF)))))
+	$(eval COUNT_PRINTF=$(shell expr $(COUNT_PRINTF) + 1))
+	$(CC) $(CFLAGS) -I$(PATCHINLCUDE) -c $< -o $@
+	printf " Compiling $(YELLOW)PRINTF %d%%\r$(FCOLOR)" $$(echo $$(($(COUNT_PRINTF) * 100 / $(words $(SRCS_PRINTF)))))
 	@if [ $(COUNT_PRINTF) -eq $(words $(SRCS_PRINTF)) ]; then \
-		printf "Compiled $(DARK_GREEN)PRINTF 100%%$(FCOLOR) ✅"; \
+		printf " Compiled $(DARK_GREEN)PRINTF 100%%$(FCOLOR) ✅"; \
 	fi
 
 $(NAME): $(OBJS_LIB) $(OBJS_GNL) $(OBJS_PRINTF)
-	@$(AR) $@ $(OBJS_LIB) $(OBJS_GNL) $(OBJS_PRINTF)
-	@sleep 0.01
-	@printf "\n\n🌟 $(DARK_BLUE)$(NAME)$(FCOLOR) is Ready 🌟\n"
+	$(AR) $@ $(OBJS_LIB) $(OBJS_GNL) $(OBJS_PRINTF)
+	sleep 0.01
+	printf "\n\n🌟 $(DARK_BLUE)$(NAME)$(FCOLOR) is Ready 🌟\n"
 
 clean:
-	@$(RM) $(PATHOBJ)
+	$(RM) $(PATHOBJ)
 
 fclean:	clean
-	@$(RM) $(NAME)
+	$(RM) $(NAME)
 
 re:	fclean all
