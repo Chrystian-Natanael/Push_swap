@@ -66,9 +66,9 @@ SRCS =	$(addprefix $(SRCS_PATH),\
 		utils.c \
 		validation.c \
 		compare.c \
-		rotate.c \
 		push.c \
-		swap.c)
+		swap.c \
+		rotate.c)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)

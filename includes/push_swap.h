@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 15:05:05 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:52:27 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,19 @@ void	lst_clear(t_dolist **lst);
 
 
 
-void	ft_swap(t_dolist *lst);
-void	sa(t_dolist *stack_a);
-void	sb(t_dolist *stack_b);
-void	ss(t_dolist *stack_a, t_dolist *stack_b);
+void	ft_swap(t_dolist **lst);
+void	sa(t_dolist **stack_a);
+void	sb(t_dolist **stack_b);
+void	ss(t_dolist **stack_a, t_dolist **stack_b);
 
 void	ft_push(t_dolist **stack_out, t_dolist **stack_in);
 void	pa(t_dolist **stack_b, t_dolist **stack_a);
 void	pb(t_dolist **stack_a, t_dolist **stack_b);
+
+
+void	rotate(t_dolist **lst);
+void	ra(t_dolist **stack_a);
+void	rb(t_dolist **stack_b);
+void	rr(t_dolist **stack_a, t_dolist **stack_b);
 
 #endif
