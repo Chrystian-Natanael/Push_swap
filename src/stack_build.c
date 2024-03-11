@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:20:17 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 10:09:58 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:26:09 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	stack_build(t_push *push, char **argv)
 			*nbr = ft_atoi(args[odx]);
 			new = ft_lstnewelement((void *)nbr);
 			if (!push->stacks.stack_a)
-				create_lst(new, push);
+				create_lst(new, &push->stacks.stack_a);
 			else
 				ft_dolstadd_back(&push->stacks.stack_a, new);
 			push->stacks.stack_a->size++;

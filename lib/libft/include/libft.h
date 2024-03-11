@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 14:41:11 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 18:21:52 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:49:02 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -616,5 +616,7 @@ void		ft_lstadd_before(t_dolist *lst, t_element *ref, t_element *el);
  * @param new The new element to be added.
  */
 void		ft_dolstadd_back(t_dolist **lst, t_element *new);
+
+void	ft_dolstadd_front(t_dolist **lst, t_element *new);
 
 #endif

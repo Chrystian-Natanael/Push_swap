@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:36:56 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 09:58:31 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:59:25 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ void	compare(t_push *push)
 		while (idx < (int)push->stacks.stack_a->size)
 		{
 			if (*((int *)tmp->content) == push->array[idx] && compare == 1)
-				ft_error(INT_DUPLICATED, (ft_itoa(*((int *)tmp->content))), "");
+			{
+				free(push->array);
+				lst_clear(&push->stacks.stack_a);
+				ft_error(INT_DUPLICATED, "", "");
+			}
 			else if (*((int *)tmp->content) == push->array[idx])
 				compare = 1;
 			idx++;

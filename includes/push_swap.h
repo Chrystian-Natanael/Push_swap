@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 09:19:05 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:05:05 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,20 @@ void	compare(t_push *push);
 int		list_to_compare(t_push *push);
 void	signal_validation(char **args, int *idx, int *odx);
 int		ft_isspace_line(char c);
-void	create_lst(t_element *new, t_push *push);
+// void	create_lst(t_element *new, t_push *push);
+void	create_lst(t_element *new, t_dolist **stack);
 void	lst_clear(t_dolist **lst);
+
+
+
+
+void	ft_swap(t_dolist *lst);
+void	sa(t_dolist *stack_a);
+void	sb(t_dolist *stack_b);
+void	ss(t_dolist *stack_a, t_dolist *stack_b);
+
+void	ft_push(t_dolist **stack_out, t_dolist **stack_in);
+void	pa(t_dolist **stack_b, t_dolist **stack_a);
+void	pb(t_dolist **stack_a, t_dolist **stack_b);
 
 #endif
