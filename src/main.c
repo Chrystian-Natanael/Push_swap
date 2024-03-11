@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:16 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 18:39:04 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/11 10:07:03 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ int	main(int argc, char **argv)
 	validation(argc, argv, &push);
 	stack_build(&push, argv);
 	compare(&push);
-	while (push.stacks.stack_a->first)
-	{
-		ft_printf("%d\n", (*(int *)push.stacks.stack_a->first->content));
-		push.stacks.stack_a->first = push.stacks.stack_a->first->next;
-	}
+	if (push.stacks.stack_a)
+		lst_clear(&push.stacks.stack_a);
+	// while (push.stacks.stack_a->first)
+	// {
+	// 	ft_printf("%d\n", (*(int *)push.stacks.stack_a->first->content));
+	// 	push.stacks.stack_a->first = push.stacks.stack_a->first->next;
+	// }
 	return (0);
 }

@@ -65,7 +65,10 @@ SRCS =	$(addprefix $(SRCS_PATH),\
 		stack_build.c \
 		utils.c \
 		validation.c \
-		compare.c)
+		compare.c \
+		rotate.c \
+		push.c \
+		swap.c)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)
@@ -84,7 +87,7 @@ CC = cc
 #                                 FLAGS E COMP                                   #
 #! ******************************************************************************#
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -O0
 DFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 LDLIBS = -lft -ldl -lglfw -pthread
 LDFLAGS = $(addprefix -L,$(dir $(LIBS)))
@@ -121,7 +124,7 @@ endef
 define comp_exe
 	$(COMP_EXE)
 	printf "\n"
-	printf "🌟 $(DARK_BLUE)$(NAME)$(RESET)$(WHITE) is ready$(RESET) 😎🙏 🌟\n"
+	printf "🌟 $(DARK_BLUE)$(NAME)$(RESET)$(WHITE) is Ready$(RESET) 🌟\n"
 endef
 
 define help

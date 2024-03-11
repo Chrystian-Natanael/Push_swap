@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 18:36:56 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/09 19:41:53 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/11 09:58:31 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	list_to_compare(t_push *push)
 	t_element	*tmp;
 
 	tmp = push->stacks.stack_a->first;
-	push->array = malloc(sizeof(int) * push->stacks.stack_a->size);
+	push->array = ft_calloc(1, sizeof(int) * push->stacks.stack_a->size);
 	if (!push->array)
 		return (1);
 	idx = 0;
