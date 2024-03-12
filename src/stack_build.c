@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:20:17 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 14:26:09 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/12 08:35:15 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	stack_build(t_push *push, char **argv)
 				create_lst(new, &push->stacks.stack_a);
 			else
 				ft_dolstadd_back(&push->stacks.stack_a, new);
-			push->stacks.stack_a->size++;
 		}
 		ft_free_split(args);
 	}

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 17:52:27 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/12 09:25:02 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,8 @@ void	compare(t_push *push);
 int		list_to_compare(t_push *push);
 void	signal_validation(char **args, int *idx, int *odx);
 int		ft_isspace_line(char c);
-// void	create_lst(t_element *new, t_push *push);
 void	create_lst(t_element *new, t_dolist **stack);
 void	lst_clear(t_dolist **lst);
-
-
-
 
 void	ft_swap(t_dolist **lst);
 void	sa(t_dolist **stack_a);
@@ -60,10 +56,13 @@ void	ft_push(t_dolist **stack_out, t_dolist **stack_in);
 void	pa(t_dolist **stack_b, t_dolist **stack_a);
 void	pb(t_dolist **stack_a, t_dolist **stack_b);
 
-
 void	rotate(t_dolist **lst);
 void	ra(t_dolist **stack_a);
 void	rb(t_dolist **stack_b);
 void	rr(t_dolist **stack_a, t_dolist **stack_b);
+
+void	reverse_rotate(t_dolist **stack);
+void	rra(t_dolist **stack_a);
+void	rrb(t_dolist **stack_b);
 
 #endif

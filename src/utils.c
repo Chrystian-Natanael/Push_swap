@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:19:30 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 17:42:03 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/12 08:33:01 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	create_lst(t_element *new, t_dolist **stack)
 	(*stack) = ft_calloc(1, sizeof(t_dolist));
 	(*stack)->first = new;
 	(*stack)->last = new;
+	(*stack)->size++;
 }
 
 void	lst_clear(t_dolist **lst)

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:11:40 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 08:37:38 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/12 07:41:20 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	signal_validation(char **args, int *idx, int *odx)
 	if (!ft_isdigit(args[*idx][*odx]) && !ft_isspace_line(args[*idx][*odx])
 		&& args[*idx][*odx] != '\0')
 		ft_error(NOT_INT, args[*idx], "");
-		
 }
 
 void	validation(int arg_nbr, char **args, t_push *push)
