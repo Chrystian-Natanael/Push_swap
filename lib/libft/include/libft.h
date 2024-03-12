@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 14:41:11 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 14:49:02 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:13:51 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -617,6 +617,17 @@ void		ft_lstadd_before(t_dolist *lst, t_element *ref, t_element *el);
  */
 void		ft_dolstadd_back(t_dolist **lst, t_element *new);
 
-void	ft_dolstadd_front(t_dolist **lst, t_element *new);
+/**
+ * @brief	Adds a new element to the first of the linked list `lst`.
+ * 			If `new` is NULL, the function returns immediately.
+ * 			If the list is empty, `new` becomes the first and last element of the list.
+ * 			The `prev` and `next` pointers of the last element and `new` are updated
+ * 			accordingly.
+ * 			The size of the list `lst` is incremented by 1.
+ *
+ * @param lst The linked list to add the element to.
+ * @param new The new element to be added.
+ */
+void		ft_dolstadd_front(t_dolist **lst, t_element *new);
 
 #endif
