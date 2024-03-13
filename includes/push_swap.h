@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/12 09:25:02 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/13 08:26:36 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,7 @@ void	rr(t_dolist **stack_a, t_dolist **stack_b);
 void	reverse_rotate(t_dolist **stack);
 void	rra(t_dolist **stack_a);
 void	rrb(t_dolist **stack_b);
+
+int	sort_validation(t_dolist **stack);
 
 #endif
