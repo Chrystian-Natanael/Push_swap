@@ -71,7 +71,8 @@ SRCS =	$(addprefix $(SRCS_PATH),\
 		rotate.c \
 		reverse_rotate.c \
 		pivot.c \
-		sort.c)
+		sort.c \
+		quick_sort.c)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 10:55:06 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:05:40 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,17 @@ void	rra(t_dolist **stack_a);
 void	rrb(t_dolist **stack_b);
 
 void	get_pivots(t_push *push);
-int		max_pivots(t_push *push);
-int		min_pivots(t_push *push);
+int		max_value(t_push *push);
+int		min_value(t_push *push);
 
 void	sort(t_push *push);
 int		sort_validation(t_dolist **stack, t_push *push);
 void	sort_three(t_push *push);
 void	sort_four(t_push *push);
+void	sort_five(t_push *push);
 
 void	printfall(t_push *push); // !APAGAR
+
+void	quick_sort(t_push **push);
 
 #endif
