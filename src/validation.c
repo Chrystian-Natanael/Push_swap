@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:11:40 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 08:30:48 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/13 10:48:08 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	validation(int arg_nbr, char **args, t_push *push)
 	args_validation(args);
 }
 
-int	sort_validation(t_dolist **stack)
+int	sort_validation(t_dolist **stack, t_push *push)
 {
 	int			tmp_value;
 	t_element	*tmp_node_curr;
@@ -102,5 +102,10 @@ int	sort_validation(t_dolist **stack)
 		}
 		tmp_node = tmp_node->next;
 	}
-	return (1);
+	if (!push->stacks.stack_b)
+	{
+		lst_clear(stack);
+		exit(EXIT_SUCCESS);
+	}
+	return (0);
 }

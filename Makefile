@@ -69,7 +69,9 @@ SRCS =	$(addprefix $(SRCS_PATH),\
 		push.c \
 		swap.c \
 		rotate.c \
-		reverse_rotate.c)
+		reverse_rotate.c \
+		pivot.c \
+		sort.c)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 08:26:36 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/13 10:55:06 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ typedef struct s_push
 {
 	t_stack	stacks;
 	int		*array;
+	int		big_pivot;
+	int		small_pivot;
+	int		max_value;
+	int		min_value;
 }	t_push;
 
 void	args_validation(char **args);
@@ -65,6 +69,15 @@ void	reverse_rotate(t_dolist **stack);
 void	rra(t_dolist **stack_a);
 void	rrb(t_dolist **stack_b);
 
-int	sort_validation(t_dolist **stack);
+void	get_pivots(t_push *push);
+int		max_pivots(t_push *push);
+int		min_pivots(t_push *push);
+
+void	sort(t_push *push);
+int		sort_validation(t_dolist **stack, t_push *push);
+void	sort_three(t_push *push);
+void	sort_four(t_push *push);
+
+void	printfall(t_push *push); // !APAGAR
 
 #endif
