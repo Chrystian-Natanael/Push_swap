@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 09:08:28 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 13:46:13 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/13 15:51:57 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ void	get_pivots(t_push *push)
 	push->max_value = max_value(push);
 	push->big_pivot = (push->min_value + push->max_value) / 2;
 	push->small_pivot = (push->min_value + push->big_pivot) / 2;
+	push->medium_pivot = (push->small_pivot + push->big_pivot) / 2;
 }

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:26:06 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 15:05:57 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:57:36 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,13 @@ void	sort_four(t_push *push)
 	else if (*(int *)push->stacks.stack_a->first->next->next->next->content == min)
 		rra(&push->stacks.stack_a);
 	if (!sort_validation(&push->stacks.stack_a, push))
+	{
 		pb(&push->stacks.stack_a, &push->stacks.stack_b);
-	sort_three(push);
-	pa(&push->stacks.stack_b, &push->stacks.stack_a);
-	// printfall(push); // ! APAGAR
+		sort_three(push);
+		pa(&push->stacks.stack_b, &push->stacks.stack_a);
+	}
+	else
+		sort_three(push);
 }
 
 void	sort_five(t_push *push)
@@ -86,7 +89,11 @@ void	sort_five(t_push *push)
 	else if (*(int *)push->stacks.stack_a->first->next->next->next->next->content == min)
 		rra(&push->stacks.stack_a);
 	if (!sort_validation(&push->stacks.stack_a, push))
+	{
 		pb(&push->stacks.stack_a, &push->stacks.stack_b);
-	sort_four(push);
-	pa(&push->stacks.stack_b, &push->stacks.stack_a);
+		sort_four(push);
+		pa(&push->stacks.stack_b, &push->stacks.stack_a);
+	}
+	else
+		sort_four(push);
 }

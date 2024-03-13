@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 15:05:40 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:38:53 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 # define NOT_INT "Not a valid number: "
 # define INT_OVERFLOW "Number overflow: "
 
+# define CONTENT_B *(int *)(*push)->stacks.stack_b->first->content
+# define CONTENT_A (*(int *)(*push)->stacks.stack_a->first->content)
+# define SIZE_B (*push)->stacks.stack_b->size
+
 typedef struct s_stack
 {
 	t_dolist	*stack_a;
@@ -37,6 +41,7 @@ typedef struct s_push
 	int		*array;
 	int		big_pivot;
 	int		small_pivot;
+	int		medium_pivot;
 	int		max_value;
 	int		min_value;
 }	t_push;
@@ -82,5 +87,6 @@ void	sort_five(t_push *push);
 void	printfall(t_push *push); // !APAGAR
 
 void	quick_sort(t_push **push);
+void	sorting_a(t_push *push);
 
 #endif

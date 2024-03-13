@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:20:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 15:15:23 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/13 16:49:53 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,14 @@ void	quick_sort(t_push **push)
 	int	iterations;
 
 	iterations = (*push)->stacks.stack_a->size;
-	ft_printf("\nITERATIONS: %d\n", (*push)->stacks.stack_a->size);
-	ft_printf("\nBIG PIVOT: %d\n", (*push)->big_pivot);
-	ft_printf("\nSMALL PIVOT: %d\n", (*push)->small_pivot);
 	while (iterations--)
 	{
-		if ((*(int *)(*push)->stacks.stack_a->first->content) < (*push)->big_pivot)
+		if (CONTENT_A < (*push)->big_pivot)
 		{
 			pb(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b);
-			if ((*push)->stacks.stack_b->size > 1 && (*(int *)(*push)->stacks.stack_b->first->content) < (*push)->small_pivot)
+			if (SIZE_B > 1 && (CONTENT_B) < (*push)->small_pivot)
 			{
-				if ((*(int *)(*push)->stacks.stack_a->first->content) > (*push)->big_pivot)
+				if (CONTENT_A > (*push)->big_pivot)
 					rr(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b);
 				else
 					rb(&(*push)->stacks.stack_b);
@@ -36,4 +33,28 @@ void	quick_sort(t_push **push)
 		else
 			ra(&(*push)->stacks.stack_a);
 	}
+	sorting_a((*push));
+}
+
+void	sorting_a(t_push *push)
+{
+	int	iterations;
+
+	iterations = push->stacks.stack_a->size;
+	while (push->stacks.stack_a->size > 5)
+	{
+		push->big_pivot = ((max_value(push) + min_value(push)) / 2);
+		push->small_pivot = ((push->big_pivot + min_value(push)) / 2);
+		iterations = push->stacks.stack_a->size;
+		while (iterations--)
+		{
+			if ((*(int *)push->stacks.stack_a->first->content) \
+			< push->big_pivot)
+				pb(&push->stacks.stack_a, &push->stacks.stack_b);
+			else
+				ra(&push->stacks.stack_a);
+		}
+	}
+	ft_printf("ANTES DA PARADA\n");
+	sort_five(push);
 }
