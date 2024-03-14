@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:20:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 16:49:53 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:15:49 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	quick_sort(t_push **push)
 			pb(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b);
 			if (SIZE_B > 1 && (CONTENT_B) < (*push)->small_pivot)
 			{
+				
 				if (CONTENT_A > (*push)->big_pivot)
 					rr(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b);
 				else
@@ -33,28 +34,82 @@ void	quick_sort(t_push **push)
 		else
 			ra(&(*push)->stacks.stack_a);
 	}
-	sorting_a((*push));
+	sorting_a(push);
+	b_to_a(push);
 }
 
-void	sorting_a(t_push *push)
+void	sorting_a(t_push **push)
 {
 	int	iterations;
+	int	rrbs;
 
-	iterations = push->stacks.stack_a->size;
-	while (push->stacks.stack_a->size > 5)
+	iterations = SIZE_A;
+	while (SIZE_A > 5)
 	{
-		push->big_pivot = ((max_value(push) + min_value(push)) / 2);
-		push->small_pivot = ((push->big_pivot + min_value(push)) / 2);
-		iterations = push->stacks.stack_a->size;
+		(*push)->big_pivot = ((max_value(*push) + min_value(*push)) / 2);
+		(*push)->small_pivot = (((*push)->big_pivot + min_value(*push)) / 2);
+		iterations = (*push)->stacks.stack_a->size;
+		rrbs = 0;
 		while (iterations--)
 		{
-			if ((*(int *)push->stacks.stack_a->first->content) \
-			< push->big_pivot)
-				pb(&push->stacks.stack_a, &push->stacks.stack_b);
+			if (SECONT_CONTENT_A < CONTENT_A \
+			&& (SECONT_CONTENT_A < (*push)->big_pivot))
+				sa(&(*push)->stacks.stack_a);
+			if (CONTENT_A < (*push)->big_pivot)
+				pb(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b);
+			if (CONTENT_B > (*push)->small_pivot)
+			{
+				rb(&(*push)->stacks.stack_b);
+				rrbs++;
+			}
 			else
-				ra(&push->stacks.stack_a);
+				ra(&(*push)->stacks.stack_a);
 		}
+		while (rrbs--)
+			rrb(&(*push)->stacks.stack_b);
 	}
-	ft_printf("ANTES DA PARADA\n");
-	sort_five(push);
+	sort(*push);
+}
+
+void	b_to_a(t_push **push)
+{
+	int	iterations;
+	int	count;
+	
+	iterations = SIZE_B;
+	while(iterations--)
+	{
+		count = 0;
+		if ((CONTENT_B ) == max_value_b(*push))
+			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
+		else if (LAST_B && (LAST_B) == max_value_b(*push))
+		{
+			rrb(&(*push)->stacks.stack_b);
+			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
+		}
+		else if ((SECONT_CONTENT_B ) && SECONT_CONTENT_B == max_value_b(*push))
+		{
+			sb(&(*push)->stacks.stack_b);
+			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
+		}
+		else if (THIRD_CONTENT_B != max_value_b(*push))
+			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
+		else if (LAST_B > CONTENT_B)
+			rrb(&(*push)->stacks.stack_b);
+		else
+			rb(&(*push)->stacks.stack_b);
+		
+		while (CONTENT_A > SECONT_CONTENT_A)
+		{
+			sa(&(*push)->stacks.stack_a);
+			if (SECONT_CONTENT_A > THIRD_CONTENT_A)
+			{
+				ra(&(*push)->stacks.stack_a);
+				count++;
+			}
+		}
+		while (count--)
+			rra(&(*push)->stacks.stack_a);
+		iterations = SIZE_B;
+	}
 }

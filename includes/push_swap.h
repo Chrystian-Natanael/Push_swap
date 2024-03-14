@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 16:38:53 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/14 08:34:45 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,19 @@
 # define NOT_INT "Not a valid number: "
 # define INT_OVERFLOW "Number overflow: "
 
-# define CONTENT_B *(int *)(*push)->stacks.stack_b->first->content
-# define CONTENT_A (*(int *)(*push)->stacks.stack_a->first->content)
 # define SIZE_B (*push)->stacks.stack_b->size
+# define SIZE_A (*push)->stacks.stack_a->size
+
+# define CONTENT_A (*(int *)(*push)->stacks.stack_a->first->content)
+# define SECONT_CONTENT_A (*(int *)(*push)->stacks.stack_a->first->next->content)
+# define THIRD_CONTENT_A (*(int *)(*push)->stacks.stack_a->first->next->next->content)
+
+# define CONTENT_B *(int *)(*push)->stacks.stack_b->first->content
+# define SECONT_CONTENT_B (*(int *)(*push)->stacks.stack_b->first->next->content)
+# define THIRD_CONTENT_B (*(int *)(*push)->stacks.stack_b->first->next->next->content)
+
+#define LAST_A (*(int *)(*push)->stacks.stack_a->last->content)
+#define LAST_B (*(int *)(*push)->stacks.stack_b->last->content)
 
 typedef struct s_stack
 {
@@ -84,9 +94,11 @@ void	sort_three(t_push *push);
 void	sort_four(t_push *push);
 void	sort_five(t_push *push);
 
-void	printfall(t_push *push); // !APAGAR
-
 void	quick_sort(t_push **push);
-void	sorting_a(t_push *push);
+void	sorting_a(t_push **push);
 
+int		max_value_b(t_push *push);
+int		min_value_b(t_push *push);
+
+void	b_to_a(t_push **push);
 #endif

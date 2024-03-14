@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 09:08:28 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 15:51:57 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/14 08:46:13 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,38 @@ int	max_value(t_push *push)
 		tmp = tmp->next;
 	}
 	return (max);
+}
+
+int	max_value_b(t_push *push)
+{
+	int	max;
+	t_element	*tmp;
+
+	tmp = push->stacks.stack_b->first;
+	max = *((int *)tmp->content);
+	while (tmp)
+	{
+		if (*((int *)tmp->content) > max)
+		max = *((int *)tmp->content);
+		tmp = tmp->next;
+	}
+	return (max);
+}
+
+int	min_value_b(t_push *push)
+{
+	int			min;
+	t_element	*tmp;
+
+	tmp = push->stacks.stack_b->first;
+	min = *((int *)tmp->content);
+	while (tmp)
+	{
+		if (*((int *)tmp->content) < min)
+		min = *((int *)tmp->content);
+		tmp = tmp->next;
+	}
+	return (min);
 }
 
 void	get_pivots(t_push *push)
