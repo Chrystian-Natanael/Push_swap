@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:20:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/14 12:15:49 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/14 12:58:47 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,22 @@ void	sorting_a(t_push **push)
 void	b_to_a(t_push **push)
 {
 	int	iterations;
-	int	count;
 	
 	iterations = SIZE_B;
 	while(iterations--)
 	{
-		count = 0;
-		if ((CONTENT_B ) == max_value_b(*push))
+		while (CONTENT_A > SECONT_CONTENT_A)
+		{
+			sa(&(*push)->stacks.stack_a);
+			if (SECONT_CONTENT_A > THIRD_CONTENT_A)
+				ra(&(*push)->stacks.stack_a);
+		}
+		if (LAST_A > CONTENT_A && LAST_A != max_value(*push))
+		{
+				rra(&(*push)->stacks.stack_a);
+				sa(&(*push)->stacks.stack_a);
+		}
+		else if ((CONTENT_B ) == max_value_b(*push))
 			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
 		else if (LAST_B && (LAST_B) == max_value_b(*push))
 		{
@@ -98,18 +107,13 @@ void	b_to_a(t_push **push)
 			rrb(&(*push)->stacks.stack_b);
 		else
 			rb(&(*push)->stacks.stack_b);
-		
-		while (CONTENT_A > SECONT_CONTENT_A)
+		if (LAST_A > CONTENT_A && LAST_A < SECONT_CONTENT_A)
 		{
-			sa(&(*push)->stacks.stack_a);
-			if (SECONT_CONTENT_A > THIRD_CONTENT_A)
-			{
-				ra(&(*push)->stacks.stack_a);
-				count++;
-			}
-		}
-		while (count--)
 			rra(&(*push)->stacks.stack_a);
-		iterations = SIZE_B;
+			sa(&(*push)->stacks.stack_a);
+			if (CONTENT_A > LAST_A)
+				ra(&(*push)->stacks.stack_a);
+		}
+		iterations = SIZE_B + SIZE_A;
 	}
 }
