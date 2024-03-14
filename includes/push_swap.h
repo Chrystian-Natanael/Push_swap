@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/14 08:34:45 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:50:25 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # define CONTENT_A (*(int *)(*push)->stacks.stack_a->first->content)
 # define SECONT_CONTENT_A (*(int *)(*push)->stacks.stack_a->first->next->content)
 # define THIRD_CONTENT_A (*(int *)(*push)->stacks.stack_a->first->next->next->content)
+
+# define FIRST_B (*push)->stacks.stack_b->first
+# define FIRST_A (*push)->stacks.stack_a->first
 
 # define CONTENT_B *(int *)(*push)->stacks.stack_b->first->content
 # define SECONT_CONTENT_B (*(int *)(*push)->stacks.stack_b->first->next->content)

@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:20:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/14 12:58:47 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:59:46 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	quick_sort(t_push **push)
 			ra(&(*push)->stacks.stack_a);
 	}
 	sorting_a(push);
+	sort(*push);
 	b_to_a(push);
 }
 
@@ -50,7 +51,7 @@ void	sorting_a(t_push **push)
 		(*push)->small_pivot = (((*push)->big_pivot + min_value(*push)) / 2);
 		iterations = (*push)->stacks.stack_a->size;
 		rrbs = 0;
-		while (iterations--)
+		while (iterations-- && SIZE_A > 5)
 		{
 			if (SECONT_CONTENT_A < CONTENT_A \
 			&& (SECONT_CONTENT_A < (*push)->big_pivot))
@@ -68,52 +69,54 @@ void	sorting_a(t_push **push)
 		while (rrbs--)
 			rrb(&(*push)->stacks.stack_b);
 	}
-	sort(*push);
 }
 
 void	b_to_a(t_push **push)
 {
 	int	iterations;
 	
-	iterations = SIZE_B;
+	iterations = SIZE_A;
+
 	while(iterations--)
 	{
-		while (CONTENT_A > SECONT_CONTENT_A)
+		while (CONTENT_A && CONTENT_A > SECONT_CONTENT_A)
 		{
 			sa(&(*push)->stacks.stack_a);
-			if (SECONT_CONTENT_A > THIRD_CONTENT_A)
+			if (SECONT_CONTENT_A && SECONT_CONTENT_A > THIRD_CONTENT_A)
 				ra(&(*push)->stacks.stack_a);
 		}
-		if (LAST_A > CONTENT_A && LAST_A != max_value(*push))
+		if (LAST_A && LAST_A > CONTENT_A && LAST_A != max_value(*push))
 		{
-				rra(&(*push)->stacks.stack_a);
-				sa(&(*push)->stacks.stack_a);
+			rra(&(*push)->stacks.stack_a);
+			sa(&(*push)->stacks.stack_a);
 		}
-		else if ((CONTENT_B ) == max_value_b(*push))
+		else if (FIRST_B && (CONTENT_B) && (CONTENT_B) == max_value_b(*push))
 			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
-		else if (LAST_B && (LAST_B) == max_value_b(*push))
+		else if (FIRST_B && (LAST_B) == max_value_b(*push))
 		{
 			rrb(&(*push)->stacks.stack_b);
 			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
 		}
-		else if ((SECONT_CONTENT_B ) && SECONT_CONTENT_B == max_value_b(*push))
+		else if (FIRST_B && SECONT_CONTENT_B == max_value_b(*push))
 		{
 			sb(&(*push)->stacks.stack_b);
 			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
 		}
-		else if (THIRD_CONTENT_B != max_value_b(*push))
+		else if (SIZE_B > 2 && THIRD_CONTENT_B != max_value_b(*push))
 			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
-		else if (LAST_B > CONTENT_B)
+		else if (FIRST_B && LAST_B > CONTENT_B)
 			rrb(&(*push)->stacks.stack_b);
-		else
+		else if (FIRST_B && SIZE_B > 0)
 			rb(&(*push)->stacks.stack_b);
-		if (LAST_A > CONTENT_A && LAST_A < SECONT_CONTENT_A)
+		if (LAST_A && LAST_A > CONTENT_A && LAST_A < SECONT_CONTENT_A)
 		{
 			rra(&(*push)->stacks.stack_a);
 			sa(&(*push)->stacks.stack_a);
-			if (CONTENT_A > LAST_A)
+			if (CONTENT_A && CONTENT_A > LAST_A)
 				ra(&(*push)->stacks.stack_a);
 		}
-		iterations = SIZE_B + SIZE_A;
+		if (LAST_A < CONTENT_A && SIZE_B == 0)
+			rra(&(*push)->stacks.stack_a);
+		iterations += SIZE_B;
 	}
 }

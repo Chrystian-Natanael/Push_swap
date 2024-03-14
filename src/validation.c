@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:11:40 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 14:07:48 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:33:47 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	sort_validation(t_dolist **stack, t_push *push)
 	t_element	*tmp_node_curr;
 	t_element	*tmp_node;
 
-	if (!(*stack))
+	if (!(*stack) || !(*stack)->first)
 		return (-1);
 	tmp_node = (*stack)->first;
 	while (tmp_node)
