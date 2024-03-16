@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 08:39:30 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/12 07:41:29 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/16 12:14:13 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,30 @@ void	rotate(t_dolist **stack)
 	ft_dolstadd_back(stack, tmp);
 }
 
-void	ra(t_dolist **stack_a)
+void	ra(t_dolist **stack_a, int count)
 {
-	rotate(stack_a);
-	ft_printf("ra\n");
+	while (count--)
+	{
+		rotate(stack_a);
+		ft_printf("ra\n");
+	}
 }
 
-void	rb(t_dolist **stack_b)
+void	rb(t_dolist **stack_b, int count)
 {
-	rotate(stack_b);
-	ft_printf("rb\n");
+	while (count--)
+	{
+		rotate(stack_b);
+		ft_printf("rb\n");
+	}
 }
 
-void	rr(t_dolist **stack_a, t_dolist **stack_b)
+void	rr(t_dolist **stack_a, t_dolist **stack_b, int count)
 {
-	rotate(stack_a);
-	rotate(stack_b);
-	ft_printf("rr\n");
+	while (count--)
+	{
+		rotate(stack_a);
+		rotate(stack_b);
+		ft_printf("rr\n");
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: leobarbo <leobarbo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 14:41:11 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/11 15:13:51 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/16 10:28:16 by leobarbo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 //! ***************************************************************************#
 
 /**@brief This enum is used to return the status of a function.
- * 
+ *
  * @param SUCCESS The function was executed successfully.
  * @param FAILURE The function was not executed successfully.
 */
@@ -45,7 +45,7 @@ typedef enum e_exit
 }	t_exit;
 
 /**@brief This enum is used to return the status of a function.
- * 
+ *
  * @param INPUT The function was executed successfully.
  * @param OUTPUT The function was not executed successfully.
  * @param ERROR The function was not executed successfully.
@@ -62,7 +62,7 @@ typedef enum e_type
 //! ***************************************************************************#
 
 /**@brief This structure is a linked list.
- * 
+ *
  * @param content The data contained in the node.
  * @param next The pointer to the next node.
 */
@@ -76,14 +76,14 @@ typedef struct s_list
  * The member variable ’content’ is initialized with
  * the value of the parameter ’content’. The variable
  * ’next’ is initialized to NULL.
- * 
+ *
  * @param content a pointer to the content to put in the new node
  * @return The pointer to the allocated memory block with the new node
 */
 t_list		*ft_lstnew(void *content);
 
 /**@brief this function Adds the node ’new’ at the beginning of the list.
- * 
+ *
  * @param lst a pointer to the first node of the list
  * @param new a pointer to the new node to add
  * @return void
@@ -91,21 +91,21 @@ t_list		*ft_lstnew(void *content);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 
 /**@brief this function Counts the number of nodes in a list.
- * 
+ *
  * @param lst a pointer to the first node of the list
  * @return The number of nodes in the list
 */
 int			ft_lstsize(t_list *lst);
 
 /**@brief this function Returns the last node of the list.
- * 
+ *
  * @param lst a pointer to the first node of the list
  * @return The pointer to the last node of the list
 */
 t_list		*ft_lstlast(t_list *lst);
 
 /**@brief this function Adds the node ’new’ at the end of the list.
- * 
+ *
  * @param lst a pointer to the first node of the list
  * @param new a pointer to the new node to add
  * @return void
@@ -116,7 +116,7 @@ void		ft_lstadd_back(t_list **lst, t_list *new);
  * the node’s content using the function ’del’ given
  * as a parameter and free the node. The memory of
  * ’next’ must not be freed.
- * 
+ *
  * @param lst a pointer to the node to free
  * @param del the function used to delete the content of the node
  * @return void
@@ -128,7 +128,7 @@ void		ft_lstdelone(t_list *lst, void (*del)(void *));
  * and free(3).
  * Finally, the pointer to the list must be set to
  * NULL.
- * 
+ *
  * @param lst a pointer to the first node of the list
  * @param del the function used to delete the content of the node
  * @return void
@@ -137,7 +137,7 @@ void		ft_lstclear(t_list **lst, void (*del)(void *));
 
 /**@brief this function Iterates the list ’lst’ and applies the function
  * ’f’ on the content of each node.
- * 
+ *
  * @param lst a pointer to the first node of the list
  * @param f the function to apply
  * @return void
@@ -149,7 +149,7 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
  * list resulting of the successive applications of
  * the function ’f’. The ’del’ function is used to
  * delete the content of a node if needed.
- * 
+ *
  * @param lst a pointer to the first node of the list
  * @param f the function to apply
  * @param del the function used to delete the content of the node
@@ -200,7 +200,7 @@ int			ft_isascii(int c);
 int			ft_isprint(int c);
 
 /**@brief This function verify if character is a space
- * 
+ *
  * @param c character will be verify
  * @return int where 0 is space and 1 if is not.
 */
@@ -234,7 +234,7 @@ int			ft_tolower(int c);
 /**@brief this function Allocates (with malloc(3)) and returns a string
  * representing the integer received as an argument.
  * Negative numbers must be handled.
- * 
+ *
  * @param n a int
  * @return The pointer to the allocated memory block with the string
  * representing the integer
@@ -242,7 +242,7 @@ int			ft_tolower(int c);
 char		*ft_itoa(int n);
 
 /**@brief this function convert a string to a long.
- * 
+ *
  * @param nptr a string
  * @return The converted long.
 */
@@ -353,7 +353,7 @@ char		*ft_strtrim(char const *s1, char const *set);
  * of strings obtained by splitting ’s’ using the
  * character ’c’ as a delimiter. The array must end
  * with a NULL pointer.
- * 
+ *
  * @param s a string to split
  * @param c a character
  * @return The pointer to the allocated memory block with the strings
@@ -364,7 +364,7 @@ char		**ft_split(char const *s, char c);
  * string ’s’, and passing its index as first argument
  * to create a new string (with malloc(3)) resulting
  * from successive applications of ’f’.
- * 
+ *
  * @param s a string
  * @param f a function to apply
  * @return The pointer to the allocated memory block with the string
@@ -375,7 +375,7 @@ char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
  * the string passed as argument, passing its index
  * as first argument. Each character is passed by
  * address to ’f’ to be modified if necessary.
- * 
+ *
  * @param s a string
  * @param f a function to apply
  * @return void
@@ -456,7 +456,7 @@ void		*ft_calloc(size_t nmemb, size_t size);
 
 /**@brief this function Outputs the character ’c’ to the given file
  * descriptor.
- * 
+ *
  * @param c a char
  * @param fd a file descriptor
  * @return void
@@ -465,7 +465,7 @@ int			ft_putchar_fd(char c, int fd);
 
 /**@brief this function Outputs the string ’s’ to the given file
  * descriptor.
- * 
+ *
  * @param s a string
  * @param fd a file descriptor
  * @return void
@@ -474,7 +474,7 @@ int			ft_putstr_fd(char *s, int fd);
 
 /**@brief this function Outputs the string ’s’ to the given file descriptor
  * followed by a newline.
- * 
+ *
  * @param s a string
  * @param fd a file descriptor
  * @return void
@@ -483,15 +483,15 @@ void		ft_putendl_fd(char *s, int fd);
 
 /**@brief this function Outputs the integer ’n’ to the given file
  * descriptor.
- * 
+ *
  * @param n a int
  * @param fd a file descriptor
- * @return void	
+ * @return void
 */
 void		ft_putnbr_fd(int n, int fd);
 
 /**@brief This function print a number in a base 16 (hexadecimal)
- * 
+ *
  * @param num num to be printed
  * @param base base to be printed
  * @return Number of characters printed
@@ -503,7 +503,7 @@ int			ft_putnbr_hex(long long num, char *base);
 //! ***************************************************************************#
 
 /**@brief This function make a error message and exit the program
- * 
+ *
  * @param str1 first part of the message
  * @param str2 second part of the message
  * @param str3 third part of the message
@@ -512,7 +512,7 @@ int			ft_putnbr_hex(long long num, char *base);
 void		ft_error(char *str1, char *str2, char *str3);
 
 /**@brief This function free a split
- * 
+ *
  * @param split a pointer to the first element of the split
  * @return void
 */
@@ -527,6 +527,7 @@ typedef struct s_element
 	void				*content;
 	struct s_element	*next;
 	struct s_element	*prev;
+	int					rank;
 }	t_element;
 
 typedef struct s_dolist

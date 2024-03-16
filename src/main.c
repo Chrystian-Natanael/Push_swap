@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:16 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/14 08:34:52 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/16 13:39:33 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	validation(argc, argv, &push);
 	stack_build(&push, argv);
 	compare(&push);
+	rank_linked_list(&push.stacks);
 	sort(&push);
 	lst_clear(&push.stacks.stack_a);
 	lst_clear(&push.stacks.stack_b);

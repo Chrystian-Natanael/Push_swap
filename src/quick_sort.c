@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:20:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/14 15:59:46 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/16 20:19:52 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,109 +14,111 @@
 
 void	quick_sort(t_push **push)
 {
-	int	iterations;
+	int	iteration;
+	int	big_pivot;
+	int	small_pivot;
+	int	size;
+	int	n;
 
-	iterations = (*push)->stacks.stack_a->size;
-	while (iterations--)
+	size = SIZE_A;
+	n = 16;
+	small_pivot = (int)SIZE_A / n;
+	big_pivot = (int)SIZE_A / (n / 2);
+	iteration = SIZE_A;
+	while (count_exist_rank((*push)->stacks.stack_a, big_pivot) && SIZE_A > 5)
 	{
-		if (CONTENT_A < (*push)->big_pivot)
+		if ((*push)->stacks.stack_a->first->rank < big_pivot)
 		{
-			pb(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b);
-			if (SIZE_B > 1 && (CONTENT_B) < (*push)->small_pivot)
+			pb(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b, 1);
+			if (SIZE_B > 1 && RANK_B_FIRST > small_pivot)
 			{
 				
-				if (CONTENT_A > (*push)->big_pivot)
-					rr(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b);
+				if ((*push)->stacks.stack_a->first->rank > small_pivot)
+					rr(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b, 1);
 				else
-					rb(&(*push)->stacks.stack_b);
+					rb(&(*push)->stacks.stack_b, 1);
 			}
 		}
 		else
-			ra(&(*push)->stacks.stack_a);
+			ra(&(*push)->stacks.stack_a, 1);
+		if (count_exist_rank((*push)->stacks.stack_a, big_pivot) == 0)
+		{
+			n -= 2;
+			small_pivot += (int)size/(n / 2);
+			big_pivot += (int)size/(n / 2);
+		}
 	}
-	sorting_a(push);
 	sort(*push);
 	b_to_a(push);
 }
 
-void	sorting_a(t_push **push)
+int	count_exist_rank(t_dolist *stack, int rank)
 {
-	int	iterations;
-	int	rrbs;
+	t_element	*temp;
+	int			count;
 
-	iterations = SIZE_A;
-	while (SIZE_A > 5)
+	count = 0;
+	temp = stack->first;
+	while (temp)
 	{
-		(*push)->big_pivot = ((max_value(*push) + min_value(*push)) / 2);
-		(*push)->small_pivot = (((*push)->big_pivot + min_value(*push)) / 2);
-		iterations = (*push)->stacks.stack_a->size;
-		rrbs = 0;
-		while (iterations-- && SIZE_A > 5)
-		{
-			if (SECONT_CONTENT_A < CONTENT_A \
-			&& (SECONT_CONTENT_A < (*push)->big_pivot))
-				sa(&(*push)->stacks.stack_a);
-			if (CONTENT_A < (*push)->big_pivot)
-				pb(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b);
-			if (CONTENT_B > (*push)->small_pivot)
-			{
-				rb(&(*push)->stacks.stack_b);
-				rrbs++;
-			}
-			else
-				ra(&(*push)->stacks.stack_a);
-		}
-		while (rrbs--)
-			rrb(&(*push)->stacks.stack_b);
+		if (temp->rank < rank)
+			count++;
+		temp = temp->next;
 	}
+	return (count);
+}
+
+int	count_exist_rank2(t_dolist *stack, int rank)
+{
+	t_element	*temp;
+	int			count;
+
+	count = 0;
+	temp = stack->first;
+	while (temp)
+	{
+		if (temp->rank > rank)
+			count++;
+		temp = temp->next;
+	}
+	return (count);
 }
 
 void	b_to_a(t_push **push)
 {
-	int	iterations;
-	
-	iterations = SIZE_A;
+	int	big_pivot;
+	int	n;
 
-	while(iterations--)
+	n = 16;
+	big_pivot = (int)SIZE_B - ((int)SIZE_B / (16 / 2));
+	while(count_exist_rank2((*push)->stacks.stack_b, big_pivot))
 	{
-		while (CONTENT_A && CONTENT_A > SECONT_CONTENT_A)
+		if (RANK_B_LAST > big_pivot)
 		{
-			sa(&(*push)->stacks.stack_a);
-			if (SECONT_CONTENT_A && SECONT_CONTENT_A > THIRD_CONTENT_A)
-				ra(&(*push)->stacks.stack_a);
+			rrb(&(*push)->stacks.stack_b, 1);
+			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
 		}
-		if (LAST_A && LAST_A > CONTENT_A && LAST_A != max_value(*push))
+		else if (RANK_B_FIRST > big_pivot)
+			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
+		else
+			rb(&(*push)->stacks.stack_b, 1);
+		if (count_exist_rank2((*push)->stacks.stack_b, big_pivot) == 0)
 		{
-			rra(&(*push)->stacks.stack_a);
-			sa(&(*push)->stacks.stack_a);
+			n -= 2;
+			big_pivot -= (int)SIZE_B/(n / 3);
 		}
-		else if (FIRST_B && (CONTENT_B) && (CONTENT_B) == max_value_b(*push))
-			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
-		else if (FIRST_B && (LAST_B) == max_value_b(*push))
-		{
-			rrb(&(*push)->stacks.stack_b);
-			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
-		}
-		else if (FIRST_B && SECONT_CONTENT_B == max_value_b(*push))
-		{
-			sb(&(*push)->stacks.stack_b);
-			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
-		}
-		else if (SIZE_B > 2 && THIRD_CONTENT_B != max_value_b(*push))
-			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a);
-		else if (FIRST_B && LAST_B > CONTENT_B)
-			rrb(&(*push)->stacks.stack_b);
-		else if (FIRST_B && SIZE_B > 0)
-			rb(&(*push)->stacks.stack_b);
-		if (LAST_A && LAST_A > CONTENT_A && LAST_A < SECONT_CONTENT_A)
-		{
-			rra(&(*push)->stacks.stack_a);
-			sa(&(*push)->stacks.stack_a);
-			if (CONTENT_A && CONTENT_A > LAST_A)
-				ra(&(*push)->stacks.stack_a);
-		}
-		if (LAST_A < CONTENT_A && SIZE_B == 0)
-			rra(&(*push)->stacks.stack_a);
-		iterations += SIZE_B;
+		a_to_a(push);
+		// pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
+	}
+}
+
+void	a_to_a(t_push **push)
+{
+	if (SECONT_CONTENT_A < CONTENT_A)
+		sa(&(*push)->stacks.stack_a, 1);
+	else if (LAST_A != max_value((*push)->stacks.stack_a) && LAST_A < CONTENT_A)
+	{
+		rra(&(*push)->stacks.stack_a, 1);
+		sa(&(*push)->stacks.stack_a, 1);
 	}
 }

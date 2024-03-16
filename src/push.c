@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 08:39:34 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/12 09:13:22 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/16 12:14:30 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,20 @@ void	ft_push(t_dolist **stack_out, t_dolist **stack_in)
 		ft_dolstadd_front(stack_in, tmp);
 }
 
-void	pa(t_dolist **stack_b, t_dolist **stack_a)
+void	pa(t_dolist **stack_b, t_dolist **stack_a, int count)
 {
-	ft_push(stack_b, stack_a);
-	ft_printf("pa\n");
+	while (count--)
+	{
+		ft_push(stack_b, stack_a);
+		ft_printf("pa\n");
+	}
 }
 
-void	pb(t_dolist **stack_a, t_dolist **stack_b)
+void	pb(t_dolist **stack_a, t_dolist **stack_b, int count)
 {
-	ft_push(stack_a, stack_b);
-	ft_printf("pb\n");
+	while (count--)
+	{
+		ft_push(stack_a, stack_b);
+		ft_printf("pb\n");
+	}
 }

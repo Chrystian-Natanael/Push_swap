@@ -60,19 +60,19 @@ LIBFT_DIR := lib/libft/
 #                                   FILES                                        #
 #! ******************************************************************************#
 
-SRCS =	$(addprefix $(SRCS_PATH),\
+SRCS =	$(addprefix $(SRCS_PATH), \
 		main.c \
-		stack_build.c \
-		utils.c \
-		validation.c \
 		compare.c \
-		push.c \
-		swap.c \
-		rotate.c \
-		reverse_rotate.c \
 		pivot.c \
+		push.c \
+		quick_sort.c \
+		reverse_rotate.c \
+		rotate.c \
 		sort.c \
-		quick_sort.c)
+		stack_build.c \
+		swap.c \
+		utils.c \
+		validation.c)
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)

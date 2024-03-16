@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 08:39:32 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/12 08:08:30 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/16 12:16:20 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,30 @@ void	ft_swap(t_dolist **lst)
 	ft_lstadd_after((*lst), (*lst)->first, tmp);
 }
 
-void	sa(t_dolist **stack_a)
+void	sa(t_dolist **stack_a, int count)
 {
-	ft_swap(stack_a);
-	ft_printf("sa\n");
+	while (count--)
+	{
+		ft_swap(stack_a);
+		ft_printf("sa\n");
+	}
 }
 
-void	sb(t_dolist **stack_b)
+void	sb(t_dolist **stack_b, int count)
 {
-	ft_swap(stack_b);
-	ft_printf("sb\n");
+	while (count--)
+	{
+		ft_swap(stack_b);
+		ft_printf("sb\n");
+	}
 }
 
-void	ss(t_dolist **stack_a, t_dolist **stack_b)
+void	ss(t_dolist **stack_a, t_dolist **stack_b, int count)
 {
-	ft_swap(stack_a);
-	ft_swap(stack_b);
-	ft_printf("ss\n");
+	while (count--)
+	{
+		ft_swap(stack_a);
+		ft_swap(stack_b);
+		ft_printf("ss\n");
+	}
 }
