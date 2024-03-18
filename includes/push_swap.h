@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/16 19:38:12 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/18 15:29:51 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@
 
 # define RANK_B_FIRST (*push)->stacks.stack_b->first->rank
 # define RANK_B_SECOND (*push)->stacks.stack_b->first->next->rank
+# define RANK_B_THIRD (*push)->stacks.stack_b->first->next->next->rank
 # define RANK_B_LAST (*push)->stacks.stack_b->last->rank
 
 # define RANK_A_FIRST (*push)->stacks.stack_a->first->rank
 # define RANK_A_SECOND (*push)->stacks.stack_a->first->next->rank
+# define RANK_A_THIRD (*push)->stacks.stack_a->first->next->next->rank
 # define RANK_A_LAST (*push)->stacks.stack_a->last->rank
 
 typedef struct s_stack

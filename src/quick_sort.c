@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:20:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/18 11:27:49 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/18 16:38:30 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	quick_sort(t_push **push)
 	int	n;
 
 	size = SIZE_A;
-	n = 22;
+	n = 40;
 	small_pivot = (int)SIZE_A / n;
 	big_pivot = (int)SIZE_A / (n / 2);
-	while (SIZE_A >= 5)
+	while (SIZE_A > 5)
 	{
-		while (count_exist_rank((*push)->stacks.stack_a, big_pivot) && SIZE_A >= 5)
+		while (count_exist_rank((*push)->stacks.stack_a, big_pivot) && SIZE_A > 5)
 		{
 			if ((*push)->stacks.stack_a->first->rank < big_pivot)
 			{
@@ -98,33 +98,51 @@ void	b_to_a(t_push **push)
 	{
 		while (count_exist_rank2((*push)->stacks.stack_b, big_pivot))
 		{
+			// while (RANK_A_FIRST < RANK_B_FIRST)
+			// 	ra(&(*push)->stacks.stack_a, 1);
 			if (RANK_B_FIRST > big_pivot && RANK_B_FIRST > RANK_B_LAST)
+			{
 				pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
+			}
 			else if (RANK_B_LAST > RANK_B_FIRST)
 			{
 				rrb(&(*push)->stacks.stack_b, 1);
 				pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
 			}
 			else
+			{
 				rb(&(*push)->stacks.stack_b, 1);
+			}
+			a_to_a(push);
 		}
+		// organize_a(push, count);
 		if (RANK_B_FIRST < small_pivot && RANK_B_LAST < small_pivot)
 		{
 			n += 2;
-			big_pivot = size - size / (20 / n);
-			small_pivot = size - size / (20 / n + 3);
+			big_pivot = size - size / (22 / n);
+			small_pivot = size - size / (22 / n + 3);
 		}
-		
 	}
 }
 
 void	a_to_a(t_push **push)
 {
-	if (SECONT_CONTENT_A < CONTENT_A)
-		sa(&(*push)->stacks.stack_a, 1);
-	else if (LAST_A != max_value((*push)->stacks.stack_a) && LAST_A < CONTENT_A)
+	int	big_pivot;
+	int	n;
+	int	count;
+
+	n = (*push)->stacks.stack_a->size + (*push)->stacks.stack_b->size;
+	count = 0;
+	big_pivot = n - SIZE_A;
+	while (RANK_A_FIRST > RANK_A_SECOND)
 	{
-		rra(&(*push)->stacks.stack_a, 1);
 		sa(&(*push)->stacks.stack_a, 1);
+		if (RANK_A_SECOND > RANK_A_THIRD)
+		{
+			ra(&(*push)->stacks.stack_a, 1);
+			count++;
+		}
 	}
+	while (count--)
+		rra(&(*push)->stacks.stack_a, 1);
 }
