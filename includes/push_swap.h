@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/18 15:29:51 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:45:21 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 // To use INT_MIN and INT_MAX
 # include <limits.h>
+# include <stdio.h>
 
 # define PARAMETERS_MSG "Two or more parameters are required"
 # define INVALID_MSG "Invalid argument: "
@@ -142,5 +143,6 @@ int		count_exist_rank(t_dolist *stack, int rank);
 void	a_to_a(t_push **push);
 
 int	count_exist_rank2(t_dolist *stack, int rank);
+int	min_value_rank_aa(t_dolist *stk, int value);
 
 #endif

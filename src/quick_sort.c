@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:20:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/18 16:38:30 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/18 18:30:57 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	quick_sort(t_push **push)
 	int	n;
 
 	size = SIZE_A;
-	n = 40;
+	n = 22;
 	small_pivot = (int)SIZE_A / n;
 	big_pivot = (int)SIZE_A / (n / 2);
 	while (SIZE_A > 5)
@@ -83,39 +83,89 @@ int	count_exist_rank2(t_dolist *stack, int rank)
 	return (count);
 }
 
+
+void	print_stack(t_dolist *a, t_dolist *b)
+{
+	t_element	*aux;
+	(void)a;
+	aux = a->first;
+	fprintf(stderr, "\n\n");
+	fprintf(stderr, "|----------|\n");
+	fprintf(stderr, "| stack a: |\n");
+	fprintf(stderr, "|-------|--|-----------|----------------|\n");
+	fprintf(stderr, "| value | sorted index |      next      |\n");
+	fprintf(stderr, "|-------|--------------|----------------|\n");
+	while (aux)
+	{
+		fprintf(stderr, "| %5d | %12d | %14p |\n", *((int *)aux->content), aux->rank, aux->next);
+		aux = aux->next;
+	}
+	fprintf(stderr, "|-------|--------------|----------------|\n\n");
+	aux = b->first;
+	fprintf(stderr, "|----------|\n");
+	fprintf(stderr, "| stack b: |\n");
+	fprintf(stderr, "|-------|--|-----------|----------------|\n");
+	fprintf(stderr, "| value | sorted index |      next      |\n");
+	fprintf(stderr, "|-------|--------------|----------------|\n");
+	while (aux)
+	{
+		fprintf(stderr, "| %5d | %12d | %14p |\n", *((int *)aux->content), aux->rank, aux->next);
+		aux = aux->next;
+	}
+	fprintf(stderr, "|-------|--------------|----------------|\n");
+	fflush(stderr);
+}
+
+
+
+
+int	get_min_value_rank(t_dolist *stack, int min)
+{
+	t_element	*temp;
+	int			count;
+	int			search;
+
+	count = 0;
+	temp = stack->first;
+	search = min_value_rank_aa(stack, min);
+	while (temp)
+	{
+		if (temp->rank == search)
+			break ;
+		temp = temp->next;
+		count++;
+	}
+	return (count);
+}
+
 void	b_to_a(t_push **push)
 {
 	int	big_pivot;
 	int	small_pivot;
 	int	n;
 	int	size;
+	int	cost;
 
 	n = 2;
 	size = SIZE_B;
 	big_pivot = size - size / (22 / n);
 	small_pivot = size - size / (22 / n + 3);
+	
 	while (SIZE_B != 0)
 	{
 		while (count_exist_rank2((*push)->stacks.stack_b, big_pivot))
 		{
-			// while (RANK_A_FIRST < RANK_B_FIRST)
-			// 	ra(&(*push)->stacks.stack_a, 1);
-			if (RANK_B_FIRST > big_pivot && RANK_B_FIRST > RANK_B_LAST)
-			{
-				pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
-			}
-			else if (RANK_B_LAST > RANK_B_FIRST)
-			{
+			if (RANK_B_LAST > RANK_B_FIRST)
 				rrb(&(*push)->stacks.stack_b, 1);
-				pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
-			}
-			else
-			{
-				rb(&(*push)->stacks.stack_b, 1);
-			}
-			a_to_a(push);
+			cost = get_min_value_rank((*push)->stacks.stack_a, RANK_B_FIRST);
+			print_stack((*push)->stacks.stack_a, (*push)->stacks.stack_b);
+			fprintf(stderr, "(%i)\n", cost);
+			if (cost < ((int)(SIZE_A) / 2))
+				ra(&(*push)->stacks.stack_a, cost);
+			else 
+				rra(&(*push)->stacks.stack_a, SIZE_A - cost);
+			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
 		}
-		// organize_a(push, count);
 		if (RANK_B_FIRST < small_pivot && RANK_B_LAST < small_pivot)
 		{
 			n += 2;
@@ -125,24 +175,3 @@ void	b_to_a(t_push **push)
 	}
 }
 
-void	a_to_a(t_push **push)
-{
-	int	big_pivot;
-	int	n;
-	int	count;
-
-	n = (*push)->stacks.stack_a->size + (*push)->stacks.stack_b->size;
-	count = 0;
-	big_pivot = n - SIZE_A;
-	while (RANK_A_FIRST > RANK_A_SECOND)
-	{
-		sa(&(*push)->stacks.stack_a, 1);
-		if (RANK_A_SECOND > RANK_A_THIRD)
-		{
-			ra(&(*push)->stacks.stack_a, 1);
-			count++;
-		}
-	}
-	while (count--)
-		rra(&(*push)->stacks.stack_a, 1);
-}

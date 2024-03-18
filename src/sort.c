@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:26:06 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/16 15:00:17 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/18 17:45:10 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,24 @@ int	min_value_rank(t_dolist *stk, int value)
 	{
 		if (*((int *)tmp->content) < min && *((int *)tmp->content) > value)
 			min = *((int *)tmp->content);
+		tmp = tmp->next;
+	}
+	return (min);
+}
+
+int	min_value_rank_aa(t_dolist *stk, int value)
+{
+	int			min;
+	t_element	*tmp;
+	
+	if (!stk)
+		return (-1);
+	tmp = stk->first;
+	min = __INT_MAX__;
+	while (tmp)
+	{
+		if (tmp->rank < min && tmp->rank > value)
+			min = tmp->rank;
 		tmp = tmp->next;
 	}
 	return (min);
