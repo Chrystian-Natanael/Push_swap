@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:20:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/18 10:12:05 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/18 11:27:49 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,20 +100,11 @@ void	b_to_a(t_push **push)
 		{
 			if (RANK_B_FIRST > big_pivot && RANK_B_FIRST > RANK_B_LAST)
 				pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
-			else if (RANK_B_LAST > big_pivot && RANK_B_LAST > RANK_B_FIRST)
+			else if (RANK_B_LAST > RANK_B_FIRST)
 			{
 				rrb(&(*push)->stacks.stack_b, 1);
 				pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
 			}
-			// else if (RANK_B_LAST > RANK_B_FIRST)
-			// {
-			// 	rrb(&(*push)->stacks.stack_b, 1);
-			// 	if (RANK_B_FIRST > RANK_B_SECOND)
-			// 	{
-			// 		sb(&(*push)->stacks.stack_b, 1);
-			// 		pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
-			// 	}
-			// }
 			else
 				rb(&(*push)->stacks.stack_b, 1);
 		}
