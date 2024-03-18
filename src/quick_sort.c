@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:20:08 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/16 20:19:52 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/18 10:12:05 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,35 @@
 
 void	quick_sort(t_push **push)
 {
-	int	iteration;
 	int	big_pivot;
 	int	small_pivot;
 	int	size;
 	int	n;
 
 	size = SIZE_A;
-	n = 16;
+	n = 22;
 	small_pivot = (int)SIZE_A / n;
 	big_pivot = (int)SIZE_A / (n / 2);
-	iteration = SIZE_A;
-	while (count_exist_rank((*push)->stacks.stack_a, big_pivot) && SIZE_A > 5)
+	while (SIZE_A >= 5)
 	{
-		if ((*push)->stacks.stack_a->first->rank < big_pivot)
+		while (count_exist_rank((*push)->stacks.stack_a, big_pivot) && SIZE_A >= 5)
 		{
-			pb(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b, 1);
-			if (SIZE_B > 1 && RANK_B_FIRST > small_pivot)
+			if ((*push)->stacks.stack_a->first->rank < big_pivot)
 			{
-				
-				if ((*push)->stacks.stack_a->first->rank > small_pivot)
-					rr(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b, 1);
-				else
-					rb(&(*push)->stacks.stack_b, 1);
+				pb(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b, 1);
+				if (SIZE_B > 1 && RANK_B_FIRST < small_pivot)
+				{
+					if ((*push)->stacks.stack_a->first->rank > small_pivot)
+						rr(&(*push)->stacks.stack_a, &(*push)->stacks.stack_b, 1);
+					else
+						rb(&(*push)->stacks.stack_b, 1);
+				}
 			}
+			else
+				ra(&(*push)->stacks.stack_a, 1);
 		}
-		else
-			ra(&(*push)->stacks.stack_a, 1);
 		if (count_exist_rank((*push)->stacks.stack_a, big_pivot) == 0)
 		{
-			n -= 2;
 			small_pivot += (int)size/(n / 2);
 			big_pivot += (int)size/(n / 2);
 		}
@@ -87,28 +86,44 @@ int	count_exist_rank2(t_dolist *stack, int rank)
 void	b_to_a(t_push **push)
 {
 	int	big_pivot;
+	int	small_pivot;
 	int	n;
+	int	size;
 
-	n = 16;
-	big_pivot = (int)SIZE_B - ((int)SIZE_B / (16 / 2));
-	while(count_exist_rank2((*push)->stacks.stack_b, big_pivot))
+	n = 2;
+	size = SIZE_B;
+	big_pivot = size - size / (22 / n);
+	small_pivot = size - size / (22 / n + 3);
+	while (SIZE_B != 0)
 	{
-		if (RANK_B_LAST > big_pivot)
+		while (count_exist_rank2((*push)->stacks.stack_b, big_pivot))
 		{
-			rrb(&(*push)->stacks.stack_b, 1);
-			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
+			if (RANK_B_FIRST > big_pivot && RANK_B_FIRST > RANK_B_LAST)
+				pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
+			else if (RANK_B_LAST > big_pivot && RANK_B_LAST > RANK_B_FIRST)
+			{
+				rrb(&(*push)->stacks.stack_b, 1);
+				pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
+			}
+			// else if (RANK_B_LAST > RANK_B_FIRST)
+			// {
+			// 	rrb(&(*push)->stacks.stack_b, 1);
+			// 	if (RANK_B_FIRST > RANK_B_SECOND)
+			// 	{
+			// 		sb(&(*push)->stacks.stack_b, 1);
+			// 		pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
+			// 	}
+			// }
+			else
+				rb(&(*push)->stacks.stack_b, 1);
 		}
-		else if (RANK_B_FIRST > big_pivot)
-			pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
-		else
-			rb(&(*push)->stacks.stack_b, 1);
-		if (count_exist_rank2((*push)->stacks.stack_b, big_pivot) == 0)
+		if (RANK_B_FIRST < small_pivot && RANK_B_LAST < small_pivot)
 		{
-			n -= 2;
-			big_pivot -= (int)SIZE_B/(n / 3);
+			n += 2;
+			big_pivot = size - size / (20 / n);
+			small_pivot = size - size / (20 / n + 3);
 		}
-		a_to_a(push);
-		// pa(&(*push)->stacks.stack_b, &(*push)->stacks.stack_a, 1);
+		
 	}
 }
 
