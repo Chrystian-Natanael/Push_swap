@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 09:25:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/20 09:09:18 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:10:37 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	rank_linked_list(t_stack *stack)
 	t_element	*tmp;
 	int			rank;
 	int			value;
+	int			aux;
 
 	value = min_value(stack->stack_a);
 	tmp = stack->stack_a->first;
@@ -83,7 +84,10 @@ void	rank_linked_list(t_stack *stack)
 		{
 			tmp->rank = rank;
 			rank++;
-			value = min_value_rank(stack->stack_a, value);
+			aux = min_value_rank(stack->stack_a, value);
+			if (aux == value)
+				break ;
+			value = aux;
 			tmp = stack->stack_a->first;
 		}
 		else

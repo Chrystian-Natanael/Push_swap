@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 13:19:30 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/20 09:09:48 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:47:58 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	lst_clear(t_dolist **lst)
 		(*lst)->first->prev = NULL;
 	}
 	if ((*lst)->first)
+	{
 		free((*lst)->first->content);
+		(*lst)->first->content = NULL;
+	}
 	free((*lst)->first);
 	free(*lst);
 }

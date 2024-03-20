@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:36:44 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/20 09:09:34 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/20 14:46:47 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ void	sort_four(t_dolist *stk_a, t_dolist *stk_b, t_push *push)
 		pb(&stk_a, &stk_b, 1);
 		sort_three(stk_a);
 		pa(&stk_b, &stk_a, 1);
+		if (stk_b->size == 0)
+			lst_clear(&stk_b);
 	}
 	else
 		sort_three(stk_a);
@@ -87,6 +89,8 @@ void	sort_five(t_dolist *stk_a, t_dolist *stk_b, t_push *push)
 		pb(&stk_a, &stk_b, 1);
 		sort_four(stk_a, stk_b, push);
 		pa(&stk_b, &stk_a, 1);
+		if (stk_b->size == 0)
+			lst_clear(&stk_b);
 	}
 	else
 		sort_four(stk_a, stk_b, push);

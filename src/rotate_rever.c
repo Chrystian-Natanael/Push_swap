@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 08:39:31 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/20 09:09:23 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:05:04 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	reverse_rotate(t_dolist **stack)
 {
 	t_element	*tmp;
 
-	if (!(*stack) || !(*stack)->first || !(*stack)->last)
+	if (!(*stack) || !(*stack)->first || !(*stack)->last || (*stack)->size < 2)
 		return ;
 	tmp = (*stack)->last;
 	ft_lstpop((*stack), (*stack)->size - 1);
