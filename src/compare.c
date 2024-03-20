@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/09 18:36:56 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/13 10:06:00 by cnatanae         ###   ########.fr       */
+/*   Created: 2024/03/09 20:10:17 by cnatanae          #+#    #+#             */
+/*   Updated: 2024/03/20 09:26:12 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	compare(t_push *push)
 	int			compare;
 	t_element	*tmp;
 
-	list_to_compare(push);
 	tmp = push->stacks.stack_a->first;
+	list_to_compare(push);
 	while (tmp && tmp->next)
 	{
 		compare = 0;
@@ -49,7 +49,7 @@ void	compare(t_push *push)
 			{
 				free(push->array);
 				lst_clear(&push->stacks.stack_a);
-				ft_error(INT_DUPLICATED, "", "");
+				ft_error("", "", "");
 			}
 			else if (*((int *)tmp->content) == push->array[idx])
 				compare = 1;

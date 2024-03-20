@@ -3,6 +3,10 @@
 		"stdlib.h": "c",
 		"stddef.h": "c",
 		"libft.h": "c",
-		"push_swap.h": "c"
+		"push_swap.h": "c",
+		"chrono": "c",
+		"random": "c",
+		"limits": "c",
+		"algorithm": "c"
 	}
 }

@@ -6,58 +6,30 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:13 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/18 17:45:21 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/20 09:25:28 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-// To use LIBFT functions
 # include "libft.h"
-
-// To use INT_MIN and INT_MAX
 # include <limits.h>
 # include <stdio.h>
-
-# define PARAMETERS_MSG "Two or more parameters are required"
-# define INVALID_MSG "Invalid argument: "
-# define INT_DUPLICATED "Duplicated number: "
-# define NOT_INT "Not a valid number: "
-# define INT_OVERFLOW "Number overflow: "
-
-# define SIZE_B (*push)->stacks.stack_b->size
-# define SIZE_A (*push)->stacks.stack_a->size
-
-# define CONTENT_A (*(int *)(*push)->stacks.stack_a->first->content)
-# define SECONT_CONTENT_A (*(int *)(*push)->stacks.stack_a->first->next->content)
-# define THIRD_CONTENT_A (*(int *)(*push)->stacks.stack_a->first->next->next->content)
-
-# define FIRST_B (*push)->stacks.stack_b->first
-# define FIRST_A (*push)->stacks.stack_a->first
-
-# define CONTENT_B *(int *)(*push)->stacks.stack_b->first->content
-# define SECONT_CONTENT_B (*(int *)(*push)->stacks.stack_b->first->next->content)
-# define THIRD_CONTENT_B (*(int *)(*push)->stacks.stack_b->first->next->next->content)
-
-#define LAST_A (*(int *)(*push)->stacks.stack_a->last->content)
-#define LAST_B (*(int *)(*push)->stacks.stack_b->last->content)
-
-# define RANK_B_FIRST (*push)->stacks.stack_b->first->rank
-# define RANK_B_SECOND (*push)->stacks.stack_b->first->next->rank
-# define RANK_B_THIRD (*push)->stacks.stack_b->first->next->next->rank
-# define RANK_B_LAST (*push)->stacks.stack_b->last->rank
-
-# define RANK_A_FIRST (*push)->stacks.stack_a->first->rank
-# define RANK_A_SECOND (*push)->stacks.stack_a->first->next->rank
-# define RANK_A_THIRD (*push)->stacks.stack_a->first->next->next->rank
-# define RANK_A_LAST (*push)->stacks.stack_a->last->rank
 
 typedef struct s_stack
 {
 	t_dolist	*stack_a;
 	t_dolist	*stack_b;
 }	t_stack;
+
+typedef struct s_pivot
+{
+	int	big_pivot;
+	int	small_pivot;
+	int	size;
+	int	n;
+}	t_pivot;
 
 typedef struct s_push
 {
@@ -67,6 +39,7 @@ typedef struct s_push
 	int		small_pivot;
 	int		max_value;
 	int		min_value;
+	t_pivot	pivot;
 }	t_push;
 
 typedef enum e_loc
@@ -141,8 +114,20 @@ void	print_list(t_dolist *lst);
 int		min_value_rank(t_dolist *stk, int value);
 int		count_exist_rank(t_dolist *stack, int rank);
 void	a_to_a(t_push **push);
+void	ft_error(char *str1, char *str2, char *str3);
 
-int	count_exist_rank2(t_dolist *stack, int rank);
-int	min_value_rank_aa(t_dolist *stk, int value);
+int		get_min_value_rank(t_dolist *stack, int min);
+int		count_exist_rank2(t_dolist *stack, int rank);
+int		min_value_rank_aa(t_dolist *stk, int value);
+void	get_cheap_cost(t_dolist **stk_a, t_dolist **stk_b);
+int		abs_math(int value);
+void	calculate_cost(t_dolist **stk_a, t_dolist **stk_b);
+void	rotate_until_sort(t_dolist *stk_a);
+void	sort_prepare(t_push **push);
+void	sort_partition(t_push **push);
+void	b_to_a_sort_elements(t_push **push, int size);
+void	init_pivots(t_pivot *pivot, int size);
+void	b_to_a(t_push **push);
+void	make_cheap_moves(t_dolist **stk_a, t_dolist **stk_b, t_element *node);
 
 #endif

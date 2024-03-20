@@ -3,8 +3,9 @@
 #! ******************************************************************************#
 
 NAME = push_swap
+NAME_BONUS = checker
 .DEFAULT_GOAL := all
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
 .SILENT:
 
 #! ******************************************************************************#
@@ -52,7 +53,8 @@ FCOLOR = \033[0m
 #! ******************************************************************************#
 
 SRCS_PATH = src/
-INCS_PATH = includes/ lib/libft/include/
+SRCS_BONUS_PATH = src/bonus/
+INCS_PATH = include/ lib/libft/include/
 BUILD_DIR := build/
 LIBFT_DIR := lib/libft/
 
@@ -61,22 +63,47 @@ LIBFT_DIR := lib/libft/
 #! ******************************************************************************#
 
 SRCS =	$(addprefix $(SRCS_PATH), \
-		main.c \
 		compare.c \
+		cost.c \
+		main.c \
 		pivot.c \
 		push.c \
 		quick_sort.c \
-		reverse_rotate.c \
+		rank.c \
 		rotate.c \
-		sort.c \
+		rotate_rever.c \
+		sort_big.c \
 		stack_build.c \
 		swap.c \
 		utils.c \
+		utils_rank.c \
 		validation.c)
+
+SRC_BONUS = $(addprefix $(SRCS_BONUS_PATH), \
+		checker.c \
+		utils_checker.c) \
+		$(addprefix $(SRCS_PATH), \
+		pivot.c \
+		push.c \
+		quick_sort.c \
+		rank.c \
+		rotate.c \
+		rotate_rever.c \
+		sort_big.c \
+		stack_build.c \
+		swap.c \
+		utils.c \
+		utils_rank.c \
+		compare.c \
+		cost.c \
+		validation.c)
+
 LIBFT = $(addprefix $(LIBFT_DIR), libft.a)
 LIBS := $(LIBFT_DIR)libft.a
 OBJS = $(SRCS:%.c=$(BUILD_DIR)%.o)
 DEPS = $(OBJS:.o=.d)
+
+OBJS_BONUS = $(SRC_BONUS:%.c=$(BUILD_DIR)%.o)
 
 #! ******************************************************************************#
 #                                    COMMANDS                                    #
@@ -91,13 +118,15 @@ CC = cc
 #                                 FLAGS E COMP                                   #
 #! ******************************************************************************#
 
-CFLAGS = -Wall -Wextra -Werror -g3 -O0
-DFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS =  -Wall -Wextra -Werror -g3
+DFLAGS =  -g3 -fsanitize=address
 LDLIBS = -lft -ldl -lglfw -pthread
 LDFLAGS = $(addprefix -L,$(dir $(LIBS)))
 CPPFLAGS = $(addprefix -I,$(INCS_PATH)) -MMD -MP
 COMP_OBJ = $(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 COMP_EXE = $(CC) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $(NAME)
+
+COMP_BONUS = $(CC) $(LDFLAGS) $(OBJS_BONUS) $(LDLIBS) -o $(NAME_BONUS)
 
 #! ******************************************************************************#
 #                                  FUNCTIONS                                     #
@@ -129,6 +158,10 @@ define comp_exe
 	$(COMP_EXE)
 	printf "\n"
 	printf "🌟 $(DARK_BLUE)$(NAME)$(RESET)$(WHITE) is Ready$(RESET) 🌟\n"
+endef
+
+define bonus
+	$(COMP_BONUS)
 endef
 
 define help
@@ -163,10 +196,14 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(NAME_BONUS)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
 help:
 	$(call help)
+
+bonus:  $(LIBFT) $(OBJS_BONUS)
+	$(call bonus)
 
 re: fclean all
 

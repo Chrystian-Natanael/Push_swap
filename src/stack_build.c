@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 17:20:17 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/12 08:35:15 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/20 09:09:39 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	stack_build(t_push *push, char **argv)
 	t_element	*new;
 	int			idx;
 	int			odx;
-	int			*nbr;
 	char		**args;
+	int			*nbr;
 
 	idx = 0;
 	while (argv[++idx])

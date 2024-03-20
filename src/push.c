@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 08:39:34 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/16 12:14:30 by cnatanae         ###   ########.fr       */
+/*   Created: 2024/03/11 08:39:28 by cnatanae          #+#    #+#             */
+/*   Updated: 2024/03/20 12:29:47 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_push(t_dolist **stack_out, t_dolist **stack_in)
 {
 	t_element	*tmp;
 
-	if (!stack_out || !(*stack_out)->first)
+	if (!(*stack_out) || !(*stack_out)->first)
 		return ;
 	tmp = (*stack_out)->first;
 	ft_lstpop((*stack_out), 0);

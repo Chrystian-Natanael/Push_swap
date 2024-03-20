@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:11:40 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/14 15:33:47 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/20 09:28:34 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	args_validation(char **args)
 			if (ft_isdigit(args[idx][odx]) && !ft_isdigit(args[idx][odx + 1])
 				&& !ft_isspace_line(args[idx][odx + 1])
 				&& args[idx][odx + 1] != '\0')
-				ft_error(NOT_INT, args[idx], "");
+				ft_error("", "", "");
 		}
 		if (ft_atol(args[idx]) > INT_MAX || ft_atol(args[idx]) < INT_MIN)
-			ft_error(INT_OVERFLOW, args[idx], "");
+			ft_error("", "", "");
 	}
 }
 
@@ -40,19 +40,19 @@ void	signal_validation(char **args, int *idx, int *odx)
 	{
 		if (!ft_isdigit(args[*idx][(*odx) + 1])
 			&& !(args[*idx][(*odx) + 1] == '-'))
-			ft_error(NOT_INT, args[*idx], "");
+			ft_error("", "", "");
 		(*odx)++;
 	}
 	while (args[*idx][*odx] == '+')
 	{
 		if (!ft_isdigit(args[*idx][(*odx) + 1])
 			&& !(args[*idx][(*odx) + 1] == '+'))
-			ft_error(NOT_INT, args[*idx], "");
+			ft_error("", "", "");
 		(*odx)++;
 	}
 	if (!ft_isdigit(args[*idx][*odx]) && !ft_isspace_line(args[*idx][*odx])
 		&& args[*idx][*odx] != '\0')
-		ft_error(NOT_INT, args[*idx], "");
+		ft_error("", "", "");
 }
 
 void	validation(int arg_nbr, char **args, t_push *push)
@@ -64,17 +64,17 @@ void	validation(int arg_nbr, char **args, t_push *push)
 	push->stacks.stack_a = NULL;
 	push->stacks.stack_b = NULL;
 	if (arg_nbr < 2)
-		exit(EXIT_FAILURE);
+		exit(0);
 	while (args[++idx])
 	{
 		odx = 0;
 		if (ft_strlen(args[idx]) == 0 && (args[idx][0] == '\0'
 			|| args[idx][0] == ' '))
-			ft_error(INVALID_MSG, args[idx], "");
+			ft_error("", "", "");
 		while (args[idx][odx] == ' ')
 		{
 			if (args[idx][odx + 1] == '\0')
-				ft_error(INVALID_MSG, args[idx], "");
+				ft_error("", "", "");
 			odx++;
 		}
 	}
@@ -87,6 +87,7 @@ int	sort_validation(t_dolist **stack, t_push *push)
 	t_element	*tmp_node_curr;
 	t_element	*tmp_node;
 
+	(void)push;
 	if (!(*stack) || !(*stack)->first)
 		return (-1);
 	tmp_node = (*stack)->first;
@@ -101,11 +102,6 @@ int	sort_validation(t_dolist **stack, t_push *push)
 			tmp_node_curr = tmp_node_curr->next;
 		}
 		tmp_node = tmp_node->next;
-	}
-	if (!push->stacks.stack_b)
-	{
-		lst_clear(stack);
-		exit(EXIT_SUCCESS);
 	}
 	return (1);
 }

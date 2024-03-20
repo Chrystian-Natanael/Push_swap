@@ -6,7 +6,7 @@
 /*   By: cnatanae <cnatanae@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:33:16 by cnatanae          #+#    #+#             */
-/*   Updated: 2024/03/16 13:39:33 by cnatanae         ###   ########.fr       */
+/*   Updated: 2024/03/20 09:08:59 by cnatanae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,17 @@ int	main(int argc, char **argv)
 	lst_clear(&push.stacks.stack_a);
 	lst_clear(&push.stacks.stack_b);
 	return (0);
+}
+
+void	print_list(t_dolist *lst)
+{
+	t_element	*tmp;
+
+	tmp = lst->first;
+	while (tmp)
+	{
+		ft_printf("\n%d: ", *((int *)tmp->content));
+		ft_printf("%d\n", tmp->rank);
+		tmp = tmp->next;
+	}
 }
