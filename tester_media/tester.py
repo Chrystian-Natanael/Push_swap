@@ -4,8 +4,8 @@ import random
 import subprocess
 import sys
 
-n_values = [500]
-# n_values = [3, 5, 50, 100, 500]
+# n_values = [500]
+n_values = [3, 5, 50, 100, 500]
 # n_values = range(11)
 # n_values = [x for x in range(3, 101) if x == 3 or x == 5 or x % 10 == 0]
 range_start = -2**31
@@ -27,13 +27,18 @@ for n in n_values:
 		output = subprocess.check_output("./push_swap " + numbers_string, shell=True)
 		output = output.decode()
 
-		# checker = subprocess.check_output(f'./push_swap {numbers_string} | valgrind -q --track-origins=yes --leak-check=full --show-leak-kinds=all ./checker {numbers_string}', shell=True)
+		try:
+			checker = subprocess.check_output(f'./push_swap {numbers_string} | valgrind -q --track-origins=yes --leak-check=full --show-leak-kinds=all ./checker {random.sample(range(range_start, range_end + 1), n)}', shell=True)
+		except:
+			print(f"Error: {numbers_string}")
+			exit()
 		# checker = subprocess.check_output(f'./push_swap {numbers_string} | ./checker {numbers_string}', shell=True)
 		# checker = checker.decode()
 
-		# if (checker == "KO\n"):
-		# 	print(f"ko sequence: {numbers_string}")
-		# 	exit()
+		print(checker, flush=True)
+		if (checker == "KO\n"):
+			print(f"ko sequence: {numbers_string}")
+			exit()
 
 		num_newlines = output.count('\n')
 		outputs.append(num_newlines)
